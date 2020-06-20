@@ -1,0 +1,43 @@
+.row-header { /* a class for rows in the header */
+    margin: 0px auto;
+    /* 
+    When you have specified a width on the object that you have applied "margin: 0 auto" to, the object will sit centrally within it's parent container.
+
+    Specifying auto as the second parameter basically tells the browser to automatically determine the left and right margins itself, which it does by setting them equally. It guarantees that the left and right margins will be set to the same size. The first parameter 0 indicates that the top and bottom margins will both be set to 0.
+
+    It's the same as:
+    margin-top:0;
+    margin-bottom:0;
+    margin-left:auto;
+    margin-right:auto;
+    */
+
+    padding: 0px auto;
+}
+
+.row-content {
+    margin: 0px auto;
+    padding: 50px 0px 50px 0px;
+    border-bottom: 1px ridge;
+    min-height: 400px;
+}
+
+.footer {
+    background-color: #D1C4E9;
+    margin: 0px auto;
+    padding: 20px 0px 20px 0px;
+}
+
+.jumbotron { /* adding stuff IN ADDITION to what Bootstrap has already used by default for its jumbotron class */
+    padding: 70px 30px 70px 30px;
+    margin: 0px; /* not sure what these padding and margin lines are for - they don't seem to change anything */
+
+    background: #9575CD;
+    color: floralwhite;
+}
+
+.address {
+    font-size: 80%; /* a slightly smaller font than the normal font */
+    margin: 0px; 
+    color: #0f0f0f;
+}
