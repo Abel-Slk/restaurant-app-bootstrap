@@ -15,46 +15,49 @@
 
 <body>
 
-    <header>
-        <div>
-            <div>
-                <div>
+    <header class="jumbotron"> <!--to make it stand out-->
+        <div class="container"> <!--so that w/e is inside this div will be constrained by the width of this container (the container class in Bootstrap4 has margins by deafult - and if we don't enclose our stuff in a container, the content will take the whole width of the page)-->
+            <div class="row">
+                <div class="col-12 col-sm-6"> <!--occupy 12 columns (the entire row) for extra small screen sizes) and 6 cols (half the row) for small and above -->
                     <h1>Ristorante con Fusion</h1>
                     <p>We take inspiration from the World's best cuisines, and create a unique fusion experience. Our lipsmacking creations will tickle your culinary senses!</p>
                 </div>
-                <div>
+                <div class="col-12 col-sm"><!--now for extra small sizes the content of this div will be STACKED BELOW the div above (cause they both need to occupy the whole 12 columns), and on small and above it'll occupy the LEFTOVER AMOUNT of columns in the row-->
                 </div>
             </div>
         </div>
     </header>
 
-    <div>
-        <div>
-            <div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-4 order-sm-last col-md-3"> <!--for extra small occupy the entire row, for small occupy 4 columns, for medium (and above, cause no more classes are present) occupy 3 columns-->
+
+            <!--and just to position elements in a more interesting way, we'll switch the order of divs inside this row and in the 3rd row (without doing it in the 2nd row)-->
                 <h3>Our Lipsmacking Culinary Creations</h3>
             </div>
-            <div>
+            <div class="col col-sm order-sm-first col-md"> <!--just col, so that for extra small screen sizes it'd be STACKED BELOW the div above; col-sm, so that for small it'd take the LEFTOVER amount of cols (12-4=8); col-md, so that for med and above it'd take the remaining 12-3=9 cols
+            NOTE: pretty much all of "col col-sm col-md" means "tuse the cols remaining after the div above is placed" - it's just that for extra small sizes all 12 are already taken, so the 2nd div gets stack below. But the general idea is that when we don't specify the NUMBER we're letting it take the REMAINING space. (I wonder though wouldn't just "col" be enough? Mb it would, but perhaps col-sm and col-md are added just for consistency - to directly correspond to classes in the first div. And this way we can later easily change any such pair of classes if we'll want to!) -->
                 <h2>Uthappizza</h2>
                 <p>A unique combination of Indian Uthappam (pancake) and Italian pizza, topped with Cerignola olives, ripe vine cherry tomatoes, Vidalia onion, Guntur chillies and Buffalo Paneer.</p>
             </div>
         </div>
 
 
-        <div>
-            <div>
+        <div class="row">
+            <div class="col-12 col-sm-4 col-md-3">
                 <h3>This Month's Promotions</h3>
             </div>
-            <div>
+            <div class="col col-sm col-md">
                 <h2>Weekend Grand Buffet</h2>
                 <p>Featuring mouthwatering combinations with a choice of five different salads, six enticing appetizers, six main entrees and five choicest desserts. Free flowing bubbly and soft drinks. All for just $19.99 per person </p>
             </div>
         </div>
 
-        <div>
-            <div>
+        <div class="row">
+            <div class="col-12 col-sm-4 order-sm-last col-md-3">
                 <h3>Meet our Culinary Specialists</h3>
             </div>
-            <div>
+            <div class="col col-sm order-sm-first col-md">
                 <h2>Alberto Somayya</h2>
                 <h4>Executive Chef</h4>
                 <p>Award winning three-star Michelin chef with wide International experience having worked closely with whos-who in the culinary world, he specializes in creating mouthwatering Indo-Italian fusion experiences. </p>
@@ -63,9 +66,11 @@
     </div>
 
     <footer>
-        <div>
-            <div>             
-                <div>
+        <div class="container">
+            <div class="row">             
+                <div class="col-4 offset-1 col-sm-2"> 
+                    <!--offset-1 means push it to the right by 1 col. No size indicated in offset - so it'll be applied to all sizes -->
+                    <!--for extra small screens the first two divs will be positioned side by side (taking 11 cols - with one left for offset), and the 3rd div will be STACKED BELOW. For small and above all three cols will be side by side (taking 11 cols - with one left for offset)-->
                     <h5>Links</h5>
                     <ul>
                         <li><a href="#">Home</a></li>
@@ -74,7 +79,7 @@
                         <li><a href="#">Contact</a></li>
                     </ul>
                 </div>
-                <div>
+                <div class="col-7 col-sm-5"> 
                     <h5>Our Address</h5>
                     <address>
 		              121, Clear Water Bay Road<br>
@@ -85,8 +90,8 @@
 		              Email: <a href="mailto:confusion@food.net">confusion@food.net</a>
 		           </address>
                 </div>
-                <div>
-                    <div>
+                <div class="col-12 col-sm-4"> 
+                    <div> 
                         <a href="http://google.com/+">Google+</a>
                         <a href="http://www.facebook.com/profile.php?id=">Facebook</a>
                         <a href="http://www.linkedin.com/in/">LinkedIn</a>
@@ -96,8 +101,8 @@
                     </div>
                 </div>
            </div>
-           <div>             
-                <div>
+           <div class="row">             
+                <div class="col-auto"><!--so that it will occupy just enough cols as is required by its content-->
                     <p>© Copyright 2018 Ristorante Con Fusion</p>
                 </div>
            </div>
