@@ -9,12 +9,48 @@
     
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+
+        <!-- Custom CSS -->
         <link rel="stylesheet" href="css/styles.css">
 
     <title>Ristorante Con Fusion</title>
 </head>
 
 <body>
+
+    <nav class="navbar navbar-dark navbar-expand-sm fixed-top"> 
+        <!-- navbar-expand-sm means expand horizontally on small screens and above (width 576px and higher). (If we don't apply navbar-expand-, the navbar will never be horizontal!) -->
+        <!-- at first we had bg-primary class - but then we overloaded navbar-dark styling in css, and in order for that overloading to work bg-primary has to be removed-->
+
+        <div class="container"> <!-- the container is used here (and in other places) to define the width of the content. And we want the nav bar be displayed in the same width as the rest of the page, so we use container class here as well (but ultimately it's up for us to decide if we want that) -->
+             
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar"> <!--data-toggle attr is using JS-->
+                <span class="navbar-toggler-icon"></span> <!--applying this class to a span el introduces a 3-line toggler icon -->
+            </button>
+
+            <a class="navbar-brand mr-auto" href="#">Ristorante Con Fusion</a> 
+            <!-- brand is ex for your company name or logo; we'll just use it to get to the top of the home page -->
+            <!-- mr-auto is here for the same reason as in ul - and it'll become active if the ul gets collapsed -->
+
+            <div class="collapse navbar-collapse" id="Navbar">
+                <ul class="navbar-nav mr-auto"> <!-- navbar-nav for links; mr-auto is to set the right margin as big as possible (push the content as left as possible) -->
+                    <li class="nav-item active"> <!-- nav-item allows li to be displayed horizontally as links -->
+                        <a class="nav-link" href="#">Home</a>
+                    </li> 
+                    <li class="nav-item">
+                        <a class="nav-link" href="aboutus.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
 
     <header class="jumbotron"> <!--to make it stand out-->
         <div class="container"> <!--so that w/e is inside this div will be constrained by the width of this container (the container class in Bootstrap4 has margins by deafult - and if we don't enclose our stuff in a container, the content will take the whole width of the page)-->
@@ -30,7 +66,7 @@
     </header>
 
     <div class="container">
-        <div class="row row-content align-items-center">
+        <div class="row row-content align-items-center"> 
             <div class="col-12 col-sm-4 order-sm-last col-md-3"> <!--for extra small occupy the entire row, for small occupy 4 columns, for medium (and above, cause no more classes are present) occupy 3 columns-->
 
             <!--and just to position elements in a more interesting way, we'll switch the order of divs inside this row and in the 3rd row (without doing it in the 2nd row)-->
@@ -39,7 +75,7 @@
             <div class="col col-sm order-sm-first col-md"> <!--just col, so that for extra small screen sizes it'd be STACKED BELOW the div above; col-sm, so that for small it'd take the LEFTOVER amount of cols (12-4=8); col-md, so that for med and above it'd take the remaining 12-3=9 cols
             NOTE: pretty much all of "col col-sm col-md" means "tuse the cols remaining after the div above is placed" - it's just that for extra small sizes all 12 are already taken, so the 2nd div gets stack below. But the general idea is that when we don't specify the NUMBER we're letting it take the REMAINING space. (I wonder though wouldn't just "col" be enough? Mb it would, but perhaps col-sm and col-md are added just for consistency - to directly correspond to classes in the first div. And this way we can later easily change any such pair of classes if we'll want to!) -->
                 <h2>Uthappizza</h2>
-                <p>A unique combination of Indian Uthappam (pancake) and Italian pizza, topped with Cerignola olives, ripe vine cherry tomatoes, Vidalia onion, Guntur chillies and Buffalo Paneer.</p>
+                <p class="d-none d-sm-block">A unique combination of Indian Uthappam (pancake) and Italian pizza, topped with Cerignola olives, ripe vine cherry tomatoes, Vidalia onion, Guntur chillies and Buffalo Paneer.</p>
             </div>
         </div>
 
@@ -50,7 +86,7 @@
             </div>
             <div class="col col-sm col-md">
                 <h2>Weekend Grand Buffet</h2>
-                <p>Featuring mouthwatering combinations with a choice of five different salads, six enticing appetizers, six main entrees and five choicest desserts. Free flowing bubbly and soft drinks. All for just $19.99 per person </p>
+                <p class="d-none d-sm-block">Featuring mouthwatering combinations with a choice of five different salads, six enticing appetizers, six main entrees and five choicest desserts. Free flowing bubbly and soft drinks. All for just $19.99 per person </p>
             </div>
         </div>
 
@@ -61,7 +97,7 @@
             <div class="col col-sm order-sm-first col-md">
                 <h2>Alberto Somayya</h2>
                 <h4>Executive Chef</h4>
-                <p>Award winning three-star Michelin chef with wide International experience having worked closely with whos-who in the culinary world, he specializes in creating mouthwatering Indo-Italian fusion experiences. </p>
+                <p class="d-none d-sm-block">Award winning three-star Michelin chef with wide International experience having worked closely with whos-who in the culinary world, he specializes in creating mouthwatering Indo-Italian fusion experiences. </p>
             </div>
         </div>
     </div>
@@ -75,7 +111,7 @@
                     <h5>Links</h5>
                     <ul class="list-unstyled">
                         <li><a href="#">Home</a></li>
-                        <li><a href="#">About</a></li>
+                        <li><a href="aboutus.html">About</a></li>
                         <li><a href="#">Menu</a></li>
                         <li><a href="#">Contact</a></li>
                     </ul>

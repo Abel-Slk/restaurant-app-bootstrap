@@ -17,7 +17,7 @@
 
 .row-content {
     margin: 0px auto;
-    padding: 50px 0px 50px 0px;
+    padding: 50px 0px 50px 0px; /* to create big spacing between the rows of content */
     border-bottom: 1px ridge;
     min-height: 400px;
 }
@@ -40,4 +40,15 @@
     font-size: 80%; /* a slightly smaller font than the normal font */
     margin: 0px; 
     color: #0f0f0f;
+}
+
+body {
+    padding: 50px 0px 0px 0px; /* The navbar was hiding part of the jumbotron. In order to avoid that, what I'm going to do is to my body, I'm going to give a padding of 50 pixel on the top so that those 50 pixels will be left for the navigation bar to cover. Whenever you are using a fixed top navigation bar it's a good idea to give this padding to the body of your webpage so that the navigation doesn't cover the topmost element in the body of your webpage.  */
+
+    /* z-index: 0;  */
+    /* to make sure that the body is below everything else? Not sure why he included it here - cause "z-index only affects elements that have a position value other than static (the default)" */
+}
+
+.navbar-dark {
+    background: #512DA8; /* we'll overload navbar-dark class by adding in one more color for the navbar class */
 }
