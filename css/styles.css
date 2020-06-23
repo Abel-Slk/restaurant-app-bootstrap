@@ -45,8 +45,8 @@
 body {
     padding: 50px 0px 0px 0px; /* The navbar was hiding part of the jumbotron. In order to avoid that, what I'm going to do is to my body, I'm going to give a padding of 50 pixel on the top so that those 50 pixels will be left for the navigation bar to cover. Whenever you are using a fixed top navigation bar it's a good idea to give this padding to the body of your webpage so that the navigation doesn't cover the topmost element in the body of your webpage.  */
 
-    /* z-index: 0;  */
-    /* to make sure that the body is below everything else? Not sure why he included it here - cause "z-index only affects elements that have a position value other than static (the default)" */
+    z-index: 0; 
+    /* to make sure that the body is below everything else? Not sure why he included it here at the same time he was adding padding to fix navbar overlapping jumbotron... I tried commenting z-index out and nothing changes... And "z-index only affects elements that have a position value other than static (the default)" */
 }
 
 .navbar-dark {

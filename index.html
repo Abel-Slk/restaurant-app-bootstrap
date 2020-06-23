@@ -10,6 +10,10 @@
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
 
+        <!-- Icon Fonts and Social - after Bootstrap and before custom CSS -->
+        <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="node_modules/bootstrap-social/bootstrap-social.css">
+
         <!-- Custom CSS -->
         <link rel="stylesheet" href="css/styles.css">
 
@@ -27,24 +31,29 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar"> <!--data-toggle attr is using JS-->
                 <span class="navbar-toggler-icon"></span> <!--applying this class to a span el introduces a 3-line toggler icon -->
             </button>
+            <!-- note: we're not specifying for which screen sizes this navbar-toggler button should appear - but it automatically appears only for xs sizes (width < 576px)! I guess this is Bootstrap's "mobile first" stuff - they just assume that you would need navbar-toggler for mobile screens (xs) only! And so they've built in the size into some class already (prob navbar-toggler) -->
 
             <a class="navbar-brand mr-auto" href="#">Ristorante Con Fusion</a> 
             <!-- brand is ex for your company name or logo; we'll just use it to get to the top of the home page -->
             <!-- mr-auto is here for the same reason as in ul - and it'll become active if the ul gets collapsed -->
 
             <div class="collapse navbar-collapse" id="Navbar">
-                <ul class="navbar-nav mr-auto"> <!-- navbar-nav for links; mr-auto is to set the right margin as big as possible (push the content as left as possible) -->
+                <ul class="navbar-nav mr-auto"> <!--  navbar-nav class is to specify that the items should be displayed inline inside the navigation bar; mr-auto is to set the right margin as big as possible (push the content as left as possible) -->
                     <li class="nav-item active"> <!-- nav-item allows li to be displayed horizontally as links -->
-                        <a class="nav-link" href="#">Home</a>
+                        <a class="nav-link" href="#"><span class="fa fa-home"></span> Home</a> 
+                        <!--span can be used like this just to make use of certain classes! (It doesn't even have to have content inside!) -->
+                        <!-- can use either span or i for Font Icons-->
+                        <!--notice the whitespace between the span el and Home-->
+                        <!-- he also had fa-lg everywhere (for larger-sized icons), but it seems to be too big compared to the text -->
                     </li> 
                     <li class="nav-item">
-                        <a class="nav-link" href="aboutus.html">About</a>
+                        <a class="nav-link" href="aboutus.html"><span class="fa fa-info"></span> About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Menu</a>
+                        <a class="nav-link" href="#"><span class="fa fa-list"></span> Menu</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
+                        <a class="nav-link" href="#"><span class="fa fa-address-card"></span> Contact</a>
                     </li>
                 </ul>
             </div>
@@ -52,8 +61,8 @@
         </div>
     </nav>
 
-    <header class="jumbotron"> <!--to make it stand out-->
-        <div class="container"> <!--so that w/e is inside this div will be constrained by the width of this container (the container class in Bootstrap4 has margins by deafult - and if we don't enclose our stuff in a container, the content will take the whole width of the page)-->
+    <header class="jumbotron"> <!-- A jumbotron is used to showcase key content on a website -->
+        <div class="container"> <!--We use the container class to keep content within a fixed width on the screen, determined by the size of the screen. (the container class in Bootstrap4 has margins by default) The alternative is to use the container-fluid class to make the content automatically to span the full width of the screen. -->
             <div class="row row-header">
                 <div class="col-12 col-sm-6"> <!--occupy 12 columns (the entire row) for extra small screen sizes) and 6 cols (half the row) for small and above -->
                     <h1>Ristorante con Fusion</h1>
@@ -122,19 +131,25 @@
 		              121, Clear Water Bay Road<br>
 		              Clear Water Bay, Kowloon<br>
 		              HONG KONG<br>
-		              Tel.: +852 1234 5678<br>
-		              Fax: +852 8765 4321<br>
-		              Email: <a href="mailto:confusion@food.net">confusion@food.net</a>
+		              <i class="fa fa-phone "></i> +852 1234 5678<br> <!-- he also had fa-lg, but it seems to be too big compared to the text -->
+		              <i class="fa fa-fax "></i> Fax: +852 8765 4321<br> <!--the fax icon is not informative though! So in case of fax perhaps better just write "Fax: "! -->
+		              <i class="fa fa-envelope "></i> <a href="mailto:confusion@food.net">confusion@food.net</a>
 		           </address>
                 </div>
                 <div class="col-12 col-sm-4 align-self-center"> <!--earlier we used "align-items-center" ON A ROW - to vertically align all items in that row. But here we need to vertically align only the content in one COLUMN (the 3rd col - leaving the first two as they are) - and the class for this is align-self-center -->
-                    <div class="text-center"> 
-                        <a href="http://google.com/+">Google+</a>
-                        <a href="http://www.facebook.com/profile.php?id=">Facebook</a>
-                        <a href="http://www.linkedin.com/in/">LinkedIn</a>
-                        <a href="http://twitter.com/">Twitter</a>
-                        <a href="http://youtube.com/">YouTube</a>
-                        <a href="mailto:">Mail</a>
+                    <div class="text-center"> <!-- I wonder why did we use a separate div for this? -->
+                        <a class="btn btn-social-icon btn-google" href="http://google.com/+"><i class="fa fa-google-plus fa-lg"></i></a> 
+                        <!-- btn stuff in <a> is Bootstrap's classes - and they make a link look REALLY like a BUTTON. 
+                        And fa classes in <i> (from Font Awesome that we downloaded separately) create CONTENT inside those buttons!
+                        Remove btn classes from <a> / fa classes from <i> to see the difference!
+                        (Ex btn-google just creates red Google background - but the content is done by fa-google-plus!) -->
+                        <a class="btn btn-social-icon btn-facebook" href="http://www.facebook.com/profile.php?id="><i class="fa fa-facebook fa-lg"></i></a>
+                        <a class="btn btn-social-icon btn-linkedin" href="http://www.linkedin.com/in/"><i class="fa fa-linkedin fa-lg"></i></a>
+                        <a class="btn btn-social-icon btn-twitter" href="http://twitter.com/"><i class="fa fa-twitter fa-lg"></i></a>
+                        <a class="btn btn-social-icon btn-google" href="http://youtube.com/"><i class="fa fa-youtube fa-lg"></i></a> <!-- note that Youtube uses btn-google! So btn-google is for all Google products! -->
+
+                        <!--the last one is just our mail - it doesn't have a fixed social media design - so we'll style it ourselves: -->
+                        <a class="btn btn-social-icon" href="mailto:"><i class="fa fa-envelope-o fa-lg"></i></a>
                     </div>
                 </div>
            </div>
