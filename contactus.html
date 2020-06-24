@@ -11,8 +11,10 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+
     <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="node_modules/bootstrap-social/bootstrap-social.css">
+
     <link href="css/styles.css" rel="stylesheet">
 </head>
 
@@ -79,12 +81,12 @@
                 <h5>Map of our Location</h5>
             </div>
             <div class="col-12 col-sm-11 offset-sm-1">
-                <div class="btn-group" role="group">
+                <div class="btn-group" role="group"> <!-- we define the button bar using the btn-group class, and then add the three buttons using the <a> tag -->
+                    <!-- also see https://getbootstrap.com/docs/4.0/components/button-group/ -->
                     <a role="button" class="btn btn-primary" href="tel:+85212345678"><i class="fa fa-phone"></i> Call</a> 
                     <!--The .btn classes are designed to be used with the <button> element. However, you can also use these classes on <a> or <input> elements (though some browsers may apply a slightly different rendering).
                     When using button classes on <a> elements that are used to trigger in-page functionality (like collapsing content), rather than linking to new pages or sections within the current page, these links should be given a role="button" to appropriately convey their purpose to assistive technologies such as screen readers. Ex Screen Readers will read this element as “button” instead of “link”.
-                    -So I guess we do need an <a> here to be able to use href - but we don't want to go to a new page or another place in the page - we just want to trigger the action of calling! But remain on the same spot! And that's why we're ending up creating a link that at the same time will have btn classes!
-                    -->
+                    -And we do need an <a> here to be able to use href - though we don't want to go to a new page or another place in the page - we just want to trigger the action of calling, but remain in the same place! And that's why we're ending up creating a link that at the same time will have role="button" and btn classes! -->
                     
                     <!--btn-primary/btn-secondary/btn-info for diff colors-->
                     <!-- href="tel:...": if your device is capable of making a phone call, then touching this button will cause a call to be done (Similar functionality with href="mailto:...") -->
@@ -114,12 +116,10 @@
                         </div>
                     </div> 
                     <div class="form-group row">
-
                         <label for="lastname" class="col-md-2 col-form-label">Last Name</label> 
                         <div class="col-md-10"> 
                             <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Last Name"> 
                         </div>
-
                     </div> 
                     <div class="form-group row">
 
