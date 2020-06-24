@@ -33,7 +33,7 @@
             </button>
             <!-- note: we're not specifying for which screen sizes this navbar-toggler button should appear - but it automatically appears only for xs sizes (width < 576px)! I guess this is Bootstrap's "mobile first" stuff - they've just built in the xs size setting into some class already (prob navbar-toggler) -->
 
-            <a class="navbar-brand mr-auto" href="#">Ristorante Con Fusion</a> 
+            <a class="navbar-brand mr-auto" href="#"><img src="img/logo.png" height="30" width="41"></a> <!-- so he rescales here the img himself... but then, it was just 167x123 originally - so even if it's inefficient in general, here it wouldn't matter much I guess-->
             <!-- brand is ex for your company name or logo; we'll just use it to get to the top of the home page -->
             <!-- mr-auto is here for the same reason as in ul - and it'll become active if the ul gets collapsed -->
             <!-- we're not including this <a> inside the ul cause we want the brand to never collapse, ie even on xs screens (unlike the ul) -->
@@ -70,7 +70,8 @@
                     <h1>Ristorante con Fusion</h1>
                     <p>We take inspiration from the World's best cuisines, and create a unique fusion experience. Our lipsmacking creations will tickle your culinary senses!</p>
                 </div>
-                <div class="col-12 col-sm"><!--now for extra small sizes the content of this div will be STACKED BELOW the div above (cause they both need to occupy the whole 12 columns), and on small and above it'll occupy the LEFTOVER AMOUNT of columns in the row-->
+                <div class="col-12 col-sm align-self-center">
+                    <img src="img/logo.png" class="img-fluid">
                 </div>
             </div>
         </div>
@@ -78,15 +79,18 @@
 
     <div class="container">
         <div class="row row-content align-items-center"> 
-            <div class="col-12 col-sm-4 order-sm-last col-md-3"> <!--for extra small occupy the entire row, for small occupy 4 columns, for medium (and above, cause no more classes are present) occupy 3 columns-->
-
-            <!--and just to position elements in a more interesting way, we'll switch the order of divs inside this row and in the 3rd row (without doing it in the 2nd row)-->
+            <div class="col-12 col-sm-4 col-md-3 order-sm-last"> 
                 <h3>Our Lipsmacking Culinary Creations</h3>
             </div>
-            <div class="col col-sm order-sm-first col-md"> <!--just col, so that for extra small screen sizes it'd be STACKED BELOW the div above; col-sm, so that for small it'd take the LEFTOVER amount of cols (12-4=8); col-md, so that for med and above it'd take the remaining 12-3=9 cols
-            NOTE: pretty much all of "col col-sm col-md" means "tuse the cols remaining after the div above is placed" - it's just that for extra small sizes all 12 are already taken, so the 2nd div gets stack below. But the general idea is that when we don't specify the NUMBER we're letting it take the REMAINING space. (I wonder though wouldn't just "col" be enough? Mb it would, but perhaps col-sm and col-md are added just for consistency - to directly correspond to classes in the first div. And this way we can later easily change any such pair of classes if we'll want to!) -->
-                <h2>Uthappizza</h2>
-                <p class="d-none d-sm-block">A unique combination of Indian Uthappam (pancake) and Italian pizza, topped with Cerignola olives, ripe vine cherry tomatoes, Vidalia onion, Guntur chillies and Buffalo Paneer.</p>
+            <div class="col col-sm col-md order-sm-first"> 
+                <div class="media"> <!-- for a media object -->
+                    <img class="d-flex mr-3 img-thumbnail align-self-center" src="img/uthappizza.png" alt="uthappizza"> <!-- in order to use an image in a media object, we need to apply some additional flex related classes here, so I apply the d-flex (W3: To create a flexbox container and to transform direct children into flex items, use the d-flex class). And then mr-3 (margin right 3). That gives sufficient margin to the right of this image, so that the description is slightly set apart from the image in the web page. (And if we were positioning the img to the right side, we would've used ml-3 - but then we'd also have to place the img code below the media-body div code) -->
+                    
+                    <div class="media-body">
+                        <h2 class="mt-0">Uthappizza</h2> <!-- margin top 0 - so This title will be aligned to the top of this particular media object here (though I don't see any changes from adding or removing it!) -->
+                        <p class="d-none d-sm-block">A unique combination of Indian Uthappam (pancake) and Italian pizza, topped with Cerignola olives, ripe vine cherry tomatoes, Vidalia onion, Guntur chillies and Buffalo Paneer.</p>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -102,13 +106,19 @@
         </div>
 
         <div class="row row-content align-items-center">
-            <div class="col-12 col-sm-4 order-sm-last col-md-3">
+            <div class="col-12 col-sm-4 col-md-3 order-sm-last">
                 <h3>Meet our Culinary Specialists</h3>
             </div>
-            <div class="col col-sm order-sm-first col-md">
-                <h2>Alberto Somayya</h2>
-                <h4>Executive Chef</h4>
-                <p class="d-none d-sm-block">Award winning three-star Michelin chef with wide International experience having worked closely with whos-who in the culinary world, he specializes in creating mouthwatering Indo-Italian fusion experiences. </p>
+            <div class="col col-sm col-md order-sm-first">
+                <div class="media">
+                    <img class="d-flex mr-3 img-thumbnail align-self-center" src="img/alberto.png" alt="alberto">
+                
+                    <div class="media-body">
+                        <h2 class="mt-0">Alberto Somayya</h2>
+                        <h4>Executive Chef</h4>
+                        <p class="d-none d-sm-block">Award winning three-star Michelin chef with wide International experience having worked closely with whos-who in the culinary world, he specializes in creating mouthwatering Indo-Italian fusion experiences. </p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
