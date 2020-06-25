@@ -23,21 +23,29 @@
 <body>
 
     <nav class="navbar navbar-dark navbar-expand-sm fixed-top"> 
+        <!-- navbar-expand-sm means expand horizontally on sm screens and above (width 576px and higher). (If we don't apply navbar-expand-, the navbar will never be horizontal!) -->
+        <!-- at first we had bg-primary class (for color), but then we decided to change the color - and for that we overloaded navbar-dark styling in css (and removed bg-primary)-->
 
-        <div class="container"> 
+        <div class="container"> <!-- the container is used here (and in other places) to define the width of the content (we want the nav bar be displayed in the same width as the rest of the page) -->
              
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar"> 
                 <span class="navbar-toggler-icon"></span> 
             </button>
-           
+            <!-- note: we're not specifying for which screen sizes this navbar-toggler button should appear - but it automatically appears only for xs sizes (width < 576px)! I guess this is Bootstrap's "mobile first" stuff - they've just built in the xs size setting into some class already (prob navbar-toggler) -->
 
-            <a class="navbar-brand mr-auto" href="#"><img src="img/logo.png" height="30" width="41"></a> 
+            <a class="navbar-brand mr-auto" href="#"><img src="img/logo.png" height="30" width="41"></a> <!-- so he rescales here the img himself... but then, it was just 167x123 originally - so even if it's inefficient in general, here it wouldn't matter much I guess-->
+            <!-- brand is ex for your company name or logo; we'll just use it to get to the top of the home page -->
+            <!-- mr-auto is here for the same reason as in ul - and it'll become active if the ul gets collapsed -->
+            <!-- we're not including this <a> inside the ul cause we want the brand to never collapse, ie even on xs screens (unlike the ul) -->
 
             <div class="collapse navbar-collapse" id="Navbar">
-                <ul class="navbar-nav mr-auto"> 
-                    <li class="nav-item active"> 
+                <ul class="navbar-nav mr-auto"> <!--  navbar-nav class is to specify that the items should be displayed inline inside the navigation bar; mr-auto is to set the right margin as big as possible (push the content as left as possible) -->
+                    <li class="nav-item active"> <!-- nav-item allows li to be displayed horizontally as links -->
                         <a class="nav-link" href="#"><span class="fa fa-home"></span> Home</a> 
-                       
+                        <!--span can be used like this just to make use of certain classes! (It doesn't even have to have content inside!) -->
+                        <!-- can use either span or i for Font Icons-->
+                        <!--notice the whitespace between the span el and Home-->
+                        <!-- he also had fa-lg everywhere (for larger-sized icons), but it seems to be too big compared to the text -->
                     </li> 
                     <li class="nav-item">
                         <a class="nav-link" href="aboutus.html"><span class="fa fa-info"></span> About</a>
@@ -54,8 +62,9 @@
         </div>
     </nav>
 
-    <header class="jumbotron"> 
-        <div class="container"> 
+    <header class="jumbotron"> <!-- A jumbotron is used to showcase key content on a website -->
+        <div class="container"> <!--We use the container class to keep content within a fixed width on the screen, determined by the size of the screen. (the container class in Bootstrap4 has margins by default) The alternative is to use the container-fluid class to make the content automatically to span the full width of the screen. -->
+            <!--BS docs: Containers are the most basic layout element in Bootstrap and are REQUIRED when using our default grid system. -->
             <div class="row row-header">
                 <div class="col-12 col-sm-6"> 
                     <h1>Ristorante con Fusion</h1>
@@ -79,11 +88,17 @@
                 <h3>Our Lipsmacking Culinary Creations</h3>
             </div>
             <div class="col col-sm col-md order-sm-first"> 
-                <div class="media"> 
+                <div class="media"> <!-- for a media object -->
                     <img class="d-flex mr-3 img-thumbnail align-self-center" src="img/uthappizza.png" alt="uthappizza"> 
-                   
+                    <!-- img-thumbnail gives an image a rounded 1px border appearance -->
+                    <!-- why we are using d-flex here - prob because of "Flexbug #12" described at https://getbootstrap.com/docs/4.0/layout/media-object/-->
+                    <!-- d-flex sets "display: flex;" in CSS (I guess this is a substitution for float / abs pos) -->
+                    <!-- https://developer.mozilla.org/en-US/docs/Web/CSS/display -->
+                    <!-- https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout -->
+                    <!-- in order to use an image in a media object, we need to apply some additional flex related classes here, so I apply the d-flex. And then mr-3 (margin right 3). That gives sufficient margin to the right of this image, so that the description is slightly set apart from the image in the web page. (And if we were positioning the img to the right side, we would've used ml-3 - but then we'd also have to place the img code below the media-body div) -->
+                    
                     <div class="media-body">
-                        <h2 class="mt-0">Uthappizza <span class="badge badge-danger">HOT</span> <span class="badge badge-pill badge-secondary">$4.99</span></h2> 
+                        <h2 class="mt-0">Uthappizza <span class="badge badge-danger">HOT</span> <span class="badge badge-pill badge-secondary">$4.99</span></h2> <!-- margin top 0 - so This title will be aligned to the top of the media object (though I don't see any changes from adding or removing it!) -->
                         <p class="d-none d-sm-block">A unique combination of Indian Uthappam (pancake) and Italian pizza, topped with Cerignola olives, ripe vine cherry tomatoes, Vidalia onion, Guntur chillies and Buffalo Paneer.</p>
                     </div>
                 </div>
@@ -138,7 +153,7 @@
                                 
                                 <div class="col-12 col-md-2"> 
                                     <label for="numberOfGuests" class="col-form-label">Number of Guests</label>
-                                    
+                                    <!-- Earlier we had the col-md-2 class in label, but here it didn't work properly in label - I guess because this label is without for (we're using it for a set of radio buttons). So I enclosed the label in a div and added the col-md-2 class there, and this solved the problem of the label and radio buttons stacking on top of each other-->
                                 </div>
             
                                 <div class="col-12 col-md" id="numberOfGuests">
@@ -146,7 +161,7 @@
                                         <input class="form-check-input" type="radio" name="numOfGuests" id="inlineRadio1" value="1">
                                         <label class="form-check-label" for="inlineRadio1">1</label>
                                     </div> 
-                                    
+                                    <!-- We need to wrap each pair of input+label in a <div class="form-check form-check-inline"> (that's because we're placing radio buttons horizontally, and without this they won't be formatted properly) -->
     
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="numOfGuests" id="inlineRadio2" value="2">
@@ -184,7 +199,7 @@
                                 </div>
     
                                 <div class="col-12 col-md">
-                                    <input type="date" class="form-control" id="date" name="date"> 
+                                    <input type="date" class="form-control" id="date" name="date"> <!-- placeholders don't seem to work for date and time - but that's actually better! Cause we're not typing them in manually anyway! -->
                                 </div>
     
                                 <div class="col-12 col-md">
@@ -214,7 +229,8 @@
         <div class="container">
             <div class="row">             
                 <div class="col-4 offset-1 col-sm-2"> 
-                    
+                    <!--offset-1 means push it to the right by 1 col. No size indicated in offset - so it'll be applied to all sizes -->
+                    <!--for extra small screens the first two divs will be positioned side by side (taking 11 cols - with one left for offset), and the 3rd div will be STACKED BELOW. For small and above all three cols will be side by side (taking 11 cols - with one left for offset)-->
                     <h5>Links</h5>
                     <ul class="list-unstyled">
                         <li><a href="#">Home</a></li>
@@ -229,25 +245,31 @@
 		              121, Clear Water Bay Road<br>
 		              Clear Water Bay, Kowloon<br>
 		              HONG KONG<br>
-		              <i class="fa fa-phone "></i> +852 1234 5678<br> 
-		              <i class="fa fa-fax "></i> Fax: +852 8765 4321<br> 
+		              <i class="fa fa-phone "></i> +852 1234 5678<br> <!-- he also had fa-lg, but it seems to be too big compared to the text -->
+		              <i class="fa fa-fax "></i> Fax: +852 8765 4321<br> <!--the fax icon is not informative though! So in case of fax perhaps better just write "Fax: "! -->
 		              <i class="fa fa-envelope "></i> <a href="mailto:confusion@food.net">confusion@food.net</a>
 		           </address>
                 </div>
-                <div class="col-12 col-sm-4 align-self-center"> 
-                    <div class="text-center"> 
+                <div class="col-12 col-sm-4 align-self-center"> <!--earlier we used "align-items-center" ON A ROW - to vertically align all items in that row. But here we need to vertically align only the content in one COLUMN (the 3rd col - leaving the first two as they are) - and the class for this is align-self-center -->
+                    <div class="text-center"> <!-- I wonder why did we use a separate div for this? -->
                         <a class="btn btn-social-icon btn-google" href="http://google.com/+"><i class="fa fa-google-plus fa-lg"></i></a> 
-                        
+                        <!-- btn stuff in <a> is Bootstrap's classes - and they make a link look REALLY like a BUTTON. 
+                        And fa classes in <i> (from Font Awesome that we downloaded separately) create CONTENT inside those buttons!
+                        Remove btn classes from <a> / fa classes from <i> to see the difference!
+                        (Ex btn-google just creates red Google background - but the content is done by fa-google-plus!) -->
+                        <!-- btn-social-icon just makeks the shape of the button square -->
                         <a class="btn btn-social-icon btn-facebook" href="http://www.facebook.com/profile.php?id="><i class="fa fa-facebook fa-lg"></i></a>
                         <a class="btn btn-social-icon btn-linkedin" href="http://www.linkedin.com/in/"><i class="fa fa-linkedin fa-lg"></i></a>
                         <a class="btn btn-social-icon btn-twitter" href="http://twitter.com/"><i class="fa fa-twitter fa-lg"></i></a>
-                        <a class="btn btn-social-icon btn-google" href="http://youtube.com/"><i class="fa fa-youtube fa-lg"></i></a> 
+                        <a class="btn btn-social-icon btn-google" href="http://youtube.com/"><i class="fa fa-youtube fa-lg"></i></a> <!-- note that Youtube uses btn-google! So btn-google is for all Google products! -->
+
+                        <!--the last one is just our mail - it doesn't have a fixed social media design - so we'll style it ourselves: -->
                         <a class="btn btn-social-icon" href="mailto:"><i class="fa fa-envelope-o fa-lg"></i></a>
                     </div>
                 </div>
            </div>
            <div class="row justify-content-center">             
-                <div class="col-auto">
+                <div class="col-auto"><!--so that it will occupy just enough cols as is required by its content-->
                     <p>© Copyright 2018 Ristorante Con Fusion</p>
                 </div>
            </div>
