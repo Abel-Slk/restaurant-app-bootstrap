@@ -52,3 +52,13 @@ body {
 .navbar-dark {
     background: #512DA8; /* we'll overload navbar-dark class by adding in one more color for the navbar class */
 }
+
+.tab-content { /* adding stuff to tab-content class for more clearly-structured tabs */
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    /*  don't need to apply to the top because the top is governed by the tab navigation already.  */
+
+    padding: 10px;
+    
+}

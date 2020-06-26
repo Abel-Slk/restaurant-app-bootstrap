@@ -106,13 +106,15 @@
 
             <div class="col-12 col-md-9">
                 <form>
-                    <div class="form-group row"> <!-- To divide your form into rows, you can simply use a div with the class="form-group" and then apply the row class to it. -->
+                    <div class="form-group row"> 
                     <!--Note that we're using Bootstrap Grid nesting here - this is a row - which is inside a col which is inside another row!-->
-                        <label for="firstname" class="col-md-2 col-form-label">First Name</label> <!--col-md-2 here means 2 cols inside the containing row (which is nested inside anothe col and row) - so this 2 will be 2/12 of the NESTED row! -->
+                        <label for="firstname" class="col-md-2 col-form-label">First Name</label> 
+                        <!-- also see comment to a label in index.html: no need for a div around label to indicate columns^ -->
+                        <!--col-md-2 here means 2 cols inside the containing row (which is nested inside anothe col and row) - so this 2 will be 2/12 of the NESTED row! -->
                         <!-- not explicitly specifying col-12 here - did he forget it? -->
                         <div class="col-md-10"> <!-- 10/12 of the NESTED row! -->
                             <!--why do we need this div though? above we applied col straight to label, so why can't we here straight to input?-->
-                            <input type="text" class="form-control" id="firstname" name="firstname" placeholder="First Name"> <!-- form-control is a BS class -->
+                            <input type="text" class="form-control" id="firstname" name="firstname" placeholder="First Name"> <!-- form-control: https://getbootstrap.com/docs/4.0/components/forms/#form-controls -->
                             <!-- name attr stores the name that is expected by the server script -->
                         </div>
                     </div> 
