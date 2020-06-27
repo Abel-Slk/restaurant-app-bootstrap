@@ -68,3 +68,92 @@ href="#reserveTable">Reserve Table</a>
 
     // Alt can create a popover instead of a tooltip (which is similar): see https://getbootstrap.com/docs/4.0/components/popovers/
 </script>
+
+
+<!-- ***************** -->
+<!-- Reserve Table as a card (instead of a modal): -->
+<div class="row row-content align-items-center justify-content-center"> 
+    <div class="col-12 col-sm-8">
+        <div class="card" id="reserveTable">
+        
+            <h3 class="card-header bg-warning text-white">Reserve a Table</h3>
+
+            <div class="card-body">
+                <form>
+                    <div class="form-group row">
+                        
+                        
+                        <label for="numberOfGuests" class="col-12 col-md-2 col-form-label">Number of Guests</label>
+                        <!-- BS: Be sure to add .col-form-label to your <label>s as well so they’re vertically centered with their associated form controls -->
+                        <!-- no need for a div around label to indicate columns, because we can list column classes right in the label - it's supposed to be done like this, label even has its own col class, col-form-label - and we can list other col classes next to it (that's how they do it in BS docs and that's how Muppala did it as well) -->
+                        <!-- NOTE: initially I didn't remove the div entirely, but just removed its classes - and this led to layout errors! Which means even an empty div can mess up the layout! So either use it with classes or don't use at all! -->
+                        <!-- See also: https://getbootstrap.com/docs/4.0/components/forms/#horizontal-form -->
+    
+                        <div class="col-12 col-md" id="numberOfGuests">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="numOfGuests" id="inlineRadio1" value="1">
+                                <label class="form-check-label" for="inlineRadio1">1</label>
+                            </div> 
+                            <!-- We need to wrap each pair of input+label in a <div class="form-check form-check-inline"> (that's because we're placing radio buttons horizontally, and without this they won't be formatted properly) -->
+                            <!-- https://getbootstrap.com/docs/4.0/components/forms/#checkboxes-and-radios -->
+
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="numOfGuests" id="inlineRadio2" value="2">
+                                <label class="form-check-label" for="inlineRadio2">2</label>
+                            </div>
+    
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="numOfGuests" id="inlineRadio3" value="3">
+                                <label class="form-check-label" for="inlineRadio3">3</label>
+                            </div> 
+
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="numOfGuests" id="inlineRadio4" value="4">
+                                <label class="form-check-label" for="inlineRadio4">4</label>
+                            </div> 
+
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="numOfGuests" id="inlineRadio5" value="5">
+                                <label class="form-check-label" for="inlineRadio5">5</label>
+                            </div> 
+
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="numOfGuests" id="inlineRadio6" value="6">
+                                <label class="form-check-label" for="inlineRadio6">6</label>
+                            </div> 
+                            
+                            
+                        </div>
+                        
+                    </div>
+    
+                    <div class="form-group row">
+                        <div class="col-12 col-md-2" id="dateAndTime">
+                            <label for="dateAndTime">Date and Time</label>
+                        </div> <!-- interesting - tried adding the col-form-label class to label - and the label shifted down a bit - ended up being lower than the input it's tied to! Tried also removing the wrapping div and moving its classes into the label - nothing changes... So leave it like this for now! But in the Contact Us form labels were aligned correctly! Mb incorrect alignment here has something to do with this form being put inside a card?.. Or mb it's just cause the label texts are long and take two lines? -->
+
+                        <div class="col-12 col-md">
+                            <input type="date" class="form-control" id="date" name="date"> 
+                        </div>
+
+                        <div class="col-12 col-md">
+                            <input type="time" class="form-control" id="time" name="time">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-12 col-md-10 offset-md-2">
+                            <button type="submit" class="btn btn-primary">
+                                Reserve
+                            </button>
+                        </div>
+                    </div>
+                    
+                    
+                </form>
+            </div>
+            
+        </div>
+    </div>
+    
+</div>
