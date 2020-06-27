@@ -115,6 +115,111 @@
         </div>
     </div>
 
+    <div id="reservationModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg" role="content">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title">Reseve a Table</h4>
+                    <button type="button" class="close" data-dismiss="modal"> 
+                        &times;
+                    </button> 
+                </div>
+
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group row">
+                            
+                            <label for="numberOfGuests" class="col-12 col-md-2 col-form-label">Number of Guests</label>
+                            <!-- BS: Be sure to add .col-form-label to your <label>s as well so they’re vertically centered with their associated form controls -->
+                            <!-- no need for a div around label to indicate columns, because we can list column classes right in the label - it's supposed to be done like this, label even has its own col class, col-form-label - and we can list other col classes next to it (that's how they do it in BS docs and that's how Muppala did it as well) -->
+                            <!-- NOTE: initially I didn't remove the div entirely, but just removed its classes - and this led to layout errors! Which means even an empty div can mess up the layout! So either use it with classes or don't use at all! -->
+                            <!-- See also: https://getbootstrap.com/docs/4.0/components/forms/#horizontal-form -->
+        
+                            <div class="col-12 col-md" id="numberOfGuests">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="numOfGuests" id="inlineRadio1" value="1">
+                                    <label class="form-check-label" for="inlineRadio1">1</label>
+                                </div> 
+                                <!-- We need to wrap each pair of input+label in a <div class="form-check form-check-inline"> (that's because we're placing radio buttons horizontally, and without this they won't be formatted properly) -->
+                                <!-- https://getbootstrap.com/docs/4.0/components/forms/#checkboxes-and-radios -->
+
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="numOfGuests" id="inlineRadio2" value="2">
+                                    <label class="form-check-label" for="inlineRadio2">2</label>
+                                </div>
+        
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="numOfGuests" id="inlineRadio3" value="3">
+                                    <label class="form-check-label" for="inlineRadio3">3</label>
+                                </div> 
+
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="numOfGuests" id="inlineRadio4" value="4">
+                                    <label class="form-check-label" for="inlineRadio4">4</label>
+                                </div> 
+
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="numOfGuests" id="inlineRadio5" value="5">
+                                    <label class="form-check-label" for="inlineRadio5">5</label>
+                                </div> 
+
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="numOfGuests" id="inlineRadio6" value="6">
+                                    <label class="form-check-label" for="inlineRadio6">6</label>
+                                </div> 
+                                
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-12 col-md-2 col-form-label">Section</label>
+
+                            <div class="col-12 col-md">
+                                <!-- https://getbootstrap.com/docs/4.0/components/buttons/#checkbox-and-radio-buttons -->
+                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <label class="btn btn-success active">
+                                        <input type="radio" name="section" id="non-smoking" checked> Non-smoking
+                                    </label>
+                                    <!-- Have to put the radio <input> inside the label if we want to see only the label button, without the radio visible (it will be hidden inside the button!) -->
+                                    <!-- checked is related to the radio input and makes it checked (even though it won't be visible here - but but it's still so, and if we press submit without selecting anything, the server will receive the checked radio option!) -->
+                                    <!-- BS docs: Note that pre-checked buttons require you to manually add the .active class to the input’s <label>. (Because radio input and label are diff things - and even though we've taken care of radio using checked, we still need to do similar stuff with the label button - and we do that using active) -->
+
+                                    <label class="btn btn-danger">
+                                        <input type="radio" name="section" id="smoking"> Smoking
+                                    </label>
+                                  </div>
+                            </div>
+                        </div>
+        
+                        <div class="form-group row">
+                            <div class="col-12 col-md-2" id="dateAndTime">
+                                <label for="dateAndTime">Date and Time</label>
+                            </div> <!-- interesting - tried adding the col-form-label class to label - and the label shifted down a bit - ended up being lower than the input it's tied to! Tried also removing the wrapping div and moving its classes into the label - nothing changes... So leave it like this for now! But in the Contact Us form labels were aligned correctly! Mb incorrect alignment here has something to do with this form being put inside a card?.. Or mb it's just cause the label texts are long and take two lines? -->
+
+                            <div class="col-12 col-md">
+                                <input type="date" class="form-control" id="date" name="date"> 
+                            </div>
+
+                            <div class="col-12 col-md">
+                                <input type="time" class="form-control" id="time" name="time">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-12 col-md-10 offset-md-2">
+                                <button type="button" class="btn btn-secondary btn-md" data-dismiss="modal">Cancel</button>
+                            
+                                <button type="submit" class="btn btn-primary btn-md ml-1">Reserve</button>
+                            </div>
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <header class="jumbotron"> 
         <div class="container"> <!--We use the container class to keep content within a fixed width on the screen, determined by the size of the screen. (the container class in Bootstrap4 has margins by default) The alternative is to use the container-fluid class to make the content automatically to span the full width of the screen. -->
             <!--BS docs: Containers are the most basic layout element in Bootstrap and are REQUIRED when using our default grid system. -->
@@ -130,14 +235,9 @@
 
                 <div class="col-12 col-sm align-self-center">
                     <a role="button" class="btn btn-warning btn-block btn-sm nav-link"
-                        data-toggle="tooltip" data-html="true" 
-                        title="or Call us at <br><strong>+857 08463008</strong>"
-                        data-placement="bottom"
-                        href="#reserveTable">Reserve Table</a> 
-                    <!-- btn-block Creates block level buttons (those that span the full width of a parent) -->
-                    <!-- nav-link: I noticed he added nav-link to his code (even though nav-link wasn't mentioned in the assignment, and even though there's no base .nav class anywhere here!) - and it makes the button look better actually - makes it more thick (it was too thin and stretched) -->
-                    <!-- data-html="true" means that the tooltip content can be styled using HTML -->
-                    <!-- data-placement="bottom" to show the tooltip at the bottom -->
+                        data-toggle="modal" data-target="#reservationModal">
+                        Reserve Table
+                    </a> 
                 </div>
             </div>
         </div>
@@ -148,11 +248,14 @@
         <div class="row row-content">
             <div class="col">
 
-                <div id="mycarousel" class="carousel slide" data-ride="carousel"> <!-- data- attributes are JS functionality -->
+                <div id="mycarousel" class="carousel slide" data-ride="carousel"> 
+                    <!-- data- attributes are JS functionality -->
+                    <!-- data-ride: Autoplays the carousel after the user manually cycles the first item. If "carousel", autoplays the carousel on load. -->
                     <div class="carousel-inner" role="listbox">
 
                         <div class="carousel-item active">
                             <img class="d-block img-fluid" src="img/uthappizza.png" alt="uthappizza"> <!-- d-block is a flex class that allows our image to be properly positioned -->
+                            <!-- BS docs: Note the presence of the .d-block and .img-fluid on carousel images to prevent browser default image alignment -->
 
                             <div class="carousel-caption d-none d-md-block">
                                 <h2>Uthappizza <span class="badge badge-danger">HOT</span> <span class="badge badge-pill badge-secondary">$4.99</span></h2> 
@@ -256,91 +359,7 @@
             </div>
         </div>
 
-        <div class="row row-content align-items-center justify-content-center"> 
-            <div class="col-12 col-sm-8">
-                <div class="card" id="reserveTable">
-                
-                    <h3 class="card-header bg-warning text-white">Reserve a Table</h3>
-
-                    <div class="card-body">
-                        <form>
-                            <div class="form-group row">
-                                
-                                
-                                <label for="numberOfGuests" class="col-12 col-md-2 col-form-label">Number of Guests</label>
-                                <!-- BS: Be sure to add .col-form-label to your <label>s as well so they’re vertically centered with their associated form controls -->
-                                <!-- no need for a div around label to indicate columns, because we can list column classes right in the label - it's supposed to be done like this, label even has its own col class, col-form-label - and we can list other col classes next to it (that's how they do it in BS docs and that's how Muppala did it as well) -->
-                                <!-- NOTE: initially I didn't remove the div entirely, but just removed its classes - and this led to layout errors! Which means even an empty div can mess up the layout! So either use it with classes or don't use at all! -->
-                                <!-- See also: https://getbootstrap.com/docs/4.0/components/forms/#horizontal-form -->
-            
-                                <div class="col-12 col-md" id="numberOfGuests">
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="numOfGuests" id="inlineRadio1" value="1">
-                                        <label class="form-check-label" for="inlineRadio1">1</label>
-                                    </div> 
-                                    <!-- We need to wrap each pair of input+label in a <div class="form-check form-check-inline"> (that's because we're placing radio buttons horizontally, and without this they won't be formatted properly) -->
-                                    <!-- https://getbootstrap.com/docs/4.0/components/forms/#checkboxes-and-radios -->
-    
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="numOfGuests" id="inlineRadio2" value="2">
-                                        <label class="form-check-label" for="inlineRadio2">2</label>
-                                    </div>
-            
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="numOfGuests" id="inlineRadio3" value="3">
-                                        <label class="form-check-label" for="inlineRadio3">3</label>
-                                    </div> 
-    
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="numOfGuests" id="inlineRadio4" value="4">
-                                        <label class="form-check-label" for="inlineRadio4">4</label>
-                                    </div> 
-    
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="numOfGuests" id="inlineRadio5" value="5">
-                                        <label class="form-check-label" for="inlineRadio5">5</label>
-                                    </div> 
-    
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="numOfGuests" id="inlineRadio6" value="6">
-                                        <label class="form-check-label" for="inlineRadio6">6</label>
-                                    </div> 
-                                    
-                                    
-                                </div>
-                                
-                            </div>
-            
-                            <div class="form-group row">
-                                <div class="col-12 col-md-2" id="dateAndTime">
-                                    <label for="dateAndTime">Date and Time</label>
-                                </div> <!-- interesting - tried adding the col-form-label class to label - and the label shifted down a bit - ended up being lower than the input it's tied to! Tried also removing the wrapping div and moving its classes into the label - nothing changes... So leave it like this for now! But in the Contact Us form labels were aligned correctly! Mb incorrect alignment here has something to do with this form being put inside a card?.. Or mb it's just cause the label texts are long and take two lines? -->
-    
-                                <div class="col-12 col-md">
-                                    <input type="date" class="form-control" id="date" name="date"> 
-                                </div>
-    
-                                <div class="col-12 col-md">
-                                    <input type="time" class="form-control" id="time" name="time">
-                                </div>
-                            </div>
-    
-                            <div class="form-group row">
-                                <div class="col-12 col-md-10 offset-md-2">
-                                    <button type="submit" class="btn btn-primary">
-                                        Reserve
-                                    </button>
-                                </div>
-                            </div>
-                            
-                            
-                        </form>
-                    </div>
-                    
-                </div>
-            </div>
-            
-        </div>
+      
     </div>
 
     <footer class="footer">
@@ -399,13 +418,7 @@
         <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
         <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 
-        <script>
-            $(document).ready(function() {
-                $('[data-toggle="tooltip"]').tooltip(); // this is specifying that wherever there is an attribute of this kind for that particular HTML tag, turn on the tooltip. 
-            });
-
-            // Alt can create a popover instead of a tooltip (which is similar): see https://getbootstrap.com/docs/4.0/components/popovers/
-        </script>
+        
 </body>
 
 </html>

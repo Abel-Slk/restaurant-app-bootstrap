@@ -69,6 +69,7 @@ body {
 }
 .carousel-item {
     height: 300px;
+    /* BS docs: Carousels don’t automatically normalize slide dimensions. As such, you may need to use additional utilities or custom styles to appropriately size content. */
 }
 .carousel-item img {
     position: absolute;

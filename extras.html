@@ -44,3 +44,27 @@
     </div>
 
 </div>
+
+
+
+<!-- ********************** -->
+
+<!-- Button "Reserve Table" with a tooltip (instead of a modal): -->
+<a role="button" class="btn btn-warning btn-block btn-sm nav-link"
+data-toggle="tooltip" data-html="true" 
+title="or Call us at <br><strong>+857 08463008</strong>"
+data-placement="bottom"
+href="#reserveTable">Reserve Table</a> 
+<!-- btn-block Creates block level buttons (those that span the full width of a parent) -->
+<!-- nav-link: I noticed he added nav-link to his code (even though nav-link wasn't mentioned in the assignment, and even though there's no base .nav class anywhere here!) - and it makes the button look better actually - makes it more thick (it was too thin and stretched) -->
+<!-- data-html="true" means that the tooltip content can be styled using HTML -->
+<!-- data-placement="bottom" to show the tooltip at the bottom -->
+
+<!-- A tooltip the following JS script (can put before the end of the <body>): -->
+<script>
+    $(document).ready(function() {
+        $('[data-toggle="tooltip"]').tooltip(); // this is specifying that wherever there is an attribute of this kind for that particular HTML tag, turn on the tooltip. 
+    });
+
+    // Alt can create a popover instead of a tooltip (which is similar): see https://getbootstrap.com/docs/4.0/components/popovers/
+</script>
