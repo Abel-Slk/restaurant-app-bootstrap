@@ -23,21 +23,29 @@
 <body>
 
     <nav class="navbar navbar-dark navbar-expand-sm fixed-top"> 
+        <!-- navbar-expand-sm means expand horizontally on sm screens and above (width 576px and higher). (If we don't apply navbar-expand-, the navbar will never be horizontal!) -->
+        <!-- at first we had bg-primary class (for color), but then we decided to change the color - and for that we overloaded navbar-dark styling in css (and removed bg-primary)-->
 
-
-        <div class="container"> 
+        <div class="container"> <!-- the container is used here (and in other places) to define the width of the content (we want the nav bar be displayed in the same width as the rest of the page) -->
              
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar"> 
                 <span class="navbar-toggler-icon"></span> 
             </button>
-           
+            <!-- note: we're not specifying for which screen sizes this navbar-toggler button should appear - but it automatically appears only for xs sizes (width < 576px)! I guess this is Bootstrap's "mobile first" stuff - they've just built in the xs size setting into some class already (prob navbar-toggler) -->
 
-            <a class="navbar-brand mr-auto" href="#"><img src="img/logo.png" height="30" width="41"></a> 
+            <a class="navbar-brand mr-auto" href="#"><img src="img/logo.png" height="30" width="41"></a> <!-- so he rescales here the img himself... but then, it was just 167x123 originally - so even if it's inefficient in general, here it wouldn't matter much I guess-->
+            <!-- brand is ex for your company name or logo; we'll just use it to get to the top of the home page -->
+            <!-- mr-auto is here for the same reason as in ul - and it'll become active if the ul gets collapsed -->
+            <!-- we're not including this <a> inside the ul cause we want the brand to never collapse, ie even on xs screens (unlike the ul) -->
 
             <div class="collapse navbar-collapse" id="Navbar">
-                <ul class="navbar-nav mr-auto"> 
-                    <li class="nav-item active"> 
+                <ul class="navbar-nav mr-auto"> <!--  navbar-nav class is to specify that the items should be displayed inline inside the navigation bar; mr-auto is to set the right margin as big as possible (push the content as left as possible) -->
+                    <li class="nav-item active"> <!-- nav-item allows li to be displayed horizontally as links -->
                         <a class="nav-link" href="#"><span class="fa fa-home"></span> Home</a> 
+                        <!--span can be used like this just to make use of certain classes! (It doesn't even have to have content inside!) -->
+                        <!-- can use either span or i for Font Icons-->
+                        <!--notice the whitespace between the span el and Home-->
+                        <!-- he also had fa-lg everywhere (for larger-sized icons), but it seems to be too big compared to the text -->
                     </li> 
                     <li class="nav-item">
                         <a class="nav-link" href="aboutus.html"><span class="fa fa-info"></span> About</a>
@@ -50,7 +58,8 @@
                     </li>
                 </ul>
 
-                <span class="navbar-text"> 
+                <span class="navbar-text"> <!-- to include a link into the navbar and show it as text (using span just to use a class!) -->
+                <!-- note that this login span will be pushed all the way to the right - because of ul's mr-auto! -->
                     <a data-toggle="modal" data-target="#loginModal">
                         <span class="fa fa-sign-in"></span> Login
                     </a>
@@ -61,23 +70,24 @@
         </div>
     </nav>
 
+    <!-- bootstrap advises that all modal related code be placed at the top of your page. So, I'm going to place in the code for the modal below the navbar here -->
     <div id="loginModal" class="modal fade" role="dialog">
         <div class="modal-dialog modal-lg" role="content">
             <div class="modal-content">
 
                 <div class="modal-header">
                     <h4 class="modal-title">Login</h4>
-                    <button type="button" class="close" data-dismiss="modal"> 
+                    <button type="button" class="close" data-dismiss="modal"> <!-- data-dismiss="modal": so that when we click on the button we dismiss the modal -->
                         &times;
                     </button> 
                 </div>
 
                 <div class="modal-body">
                     <form>
-                        <div class="form-row"> 
+                        <div class="form-row"> <!-- earlier we had "form-group row" - and here it's diff cause we want to put a couple of forms and their labels in a SINGLE row -->
                             <div class="form-group col-sm-4">
                                     <label class="sr-only" for="exampleInputEmail3">Email address</label>
-                                   
+                                    <!-- sr-only: Hide an element to all devices except screen readers (so it's not shown for us - but we don't need labels anyway cause we have placeholders in the input) -->
                                     <input type="email" class="form-control form-control-sm mr-1" id="exampleInputEmail3" placeholder="Enter email">
                             </div>
 
@@ -88,7 +98,7 @@
 
                             <div class="col-sm-auto">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox"> 
+                                    <input class="form-check-input" type="checkbox"> <!-- I guess we gotta also have name and value for it to be able to send stuff to server -->
                                     <label class="form-check-label"> Remember me
                                     </label>
                                 </div>
@@ -96,7 +106,7 @@
                         </div>
 
                         <div class="form-row">
-                            <button type="button" class="btn btn-secondary btn-sm ml-auto" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-secondary btn-sm ml-auto" data-dismiss="modal">Cancel</button><!-- ml-auto makes the left margin as big as possible - thus pushing the element as much right as possible -->
                             <button type="submit" class="btn btn-primary btn-sm ml-1">Sign in</button>        
                         </div>
                     </form>
@@ -121,13 +131,18 @@
                         <div class="form-group row">
                             
                             <label for="numberOfGuests" class="col-12 col-md-2 col-form-label">Number of Guests</label>
+                            <!-- BS: Be sure to add .col-form-label to your <label>s as well so they’re vertically centered with their associated form controls -->
+                            <!-- no need for a div around label to indicate columns, because we can list column classes right in the label - it's supposed to be done like this, label even has its own col class, col-form-label - and we can list other col classes next to it (that's how they do it in BS docs and that's how Muppala did it as well) -->
+                            <!-- NOTE: initially I didn't remove the div entirely, but just removed its classes - and this led to layout errors! Which means even an empty div can mess up the layout! So either use it with classes or don't use at all! -->
+                            <!-- See also: https://getbootstrap.com/docs/4.0/components/forms/#horizontal-form -->
         
                             <div class="col-12 col-md" id="numberOfGuests">
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="numOfGuests" id="inlineRadio1" value="1">
                                     <label class="form-check-label" for="inlineRadio1">1</label>
                                 </div> 
-                                
+                                <!-- We need to wrap each pair of input+label in a <div class="form-check form-check-inline"> (that's because we're placing radio buttons horizontally, and without this they won't be formatted properly) -->
+                                <!-- https://getbootstrap.com/docs/4.0/components/forms/#checkboxes-and-radios -->
 
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="numOfGuests" id="inlineRadio2" value="2">
@@ -161,11 +176,14 @@
                             <label class="col-12 col-md-2 col-form-label">Section</label>
 
                             <div class="col-12 col-md">
-                                
+                                <!-- https://getbootstrap.com/docs/4.0/components/buttons/#checkbox-and-radio-buttons -->
                                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
                                     <label class="btn btn-success active">
                                         <input type="radio" name="section" id="non-smoking" checked> Non-smoking
                                     </label>
+                                    <!-- Have to put the radio <input> inside the label if we want to see only the label button, without the radio visible (it will be hidden inside the button!) -->
+                                    <!-- checked is related to the radio input and makes it checked (even though it won't be visible here - but but it's still so, and if we press submit without selecting anything, the server will receive the checked radio option!) -->
+                                    <!-- BS docs: Note that pre-checked buttons require you to manually add the .active class to the input’s <label>. (Because radio input and label are diff things - and even though we've taken care of radio using checked, we still need to do similar stuff with the label button - and we do that using active) -->
 
                                     <label class="btn btn-danger">
                                         <input type="radio" name="section" id="smoking"> Smoking
@@ -177,7 +195,7 @@
                         <div class="form-group row">
                             <div class="col-12 col-md-2" id="dateAndTime">
                                 <label for="dateAndTime">Date and Time</label>
-                            </div> 
+                            </div> <!-- interesting - tried adding the col-form-label class to label - and the label shifted down a bit - ended up being lower than the input it's tied to! Tried also removing the wrapping div and moving its classes into the label - nothing changes... So leave it like this for now! But in the Contact Us form labels were aligned correctly! Mb incorrect alignment here has something to do with this form being put inside a card?.. Or mb it's just cause the label texts are long and take two lines? -->
 
                             <div class="col-12 col-md">
                                 <input type="date" class="form-control" id="date" name="date"> 
@@ -203,7 +221,8 @@
     </div>
 
     <header class="jumbotron"> 
-        <div class="container"> 
+        <div class="container"> <!--We use the container class to keep content within a fixed width on the screen, determined by the size of the screen. (the container class in Bootstrap4 has margins by default) The alternative is to use the container-fluid class to make the content automatically to span the full width of the screen. -->
+            <!--BS docs: Containers are the most basic layout element in Bootstrap and are REQUIRED when using our default grid system. -->
             <div class="row row-header">
                 <div class="col-12 col-sm-6"> 
                     <h1>Ristorante con Fusion</h1>
@@ -230,11 +249,13 @@
             <div class="col">
 
                 <div id="mycarousel" class="carousel slide" data-ride="carousel"> 
-                    
+                    <!-- data- attributes are JS functionality -->
+                    <!-- data-ride: Autoplays the carousel after the user manually cycles the first item. If "carousel", autoplays the carousel on load. -->
                     <div class="carousel-inner" role="listbox">
 
                         <div class="carousel-item active">
-                            <img class="d-block img-fluid" src="img/uthappizza.png" alt="uthappizza"> 
+                            <img class="d-block img-fluid" src="img/uthappizza.png" alt="uthappizza"> <!-- d-block is a flex class that allows our image to be properly positioned -->
+                            <!-- BS docs: Note the presence of the .d-block and .img-fluid on carousel images to prevent browser default image alignment -->
 
                             <div class="carousel-caption d-none d-md-block">
                                 <h2>Uthappizza <span class="badge badge-danger">HOT</span> <span class="badge badge-pill badge-secondary">$4.99</span></h2> 
@@ -263,11 +284,12 @@
                     </div>
 
                     <ol class="carousel-indicators">
-                        <li data-target="#mycarousel" data-slide-to="0" class="active"></li> 
+                        <li data-target="#mycarousel" data-slide-to="0" class="active"></li> <!-- data-slide-to="0" to first show the first item -->
                         <li data-target="#mycarousel" data-slide-to="1"></li>
                         <li data-target="#mycarousel" data-slide-to="2"></li>
                     </ol>
 
+                    <!-- and two arrow controls: -->
                     <a class="carousel-control-prev" href="#mycarousel" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon"></span>
                     </a>
@@ -284,11 +306,17 @@
                 <h3>Our Lipsmacking Culinary Creations</h3>
             </div>
             <div class="col col-sm col-md order-sm-first"> 
-                <div class="media"> 
+                <div class="media"> <!-- for a media object  -->
                     <img class="d-flex mr-3 img-thumbnail align-self-center" src="img/uthappizza.png" alt="uthappizza"> 
+                    <!-- img-thumbnail gives an image a rounded 1px border appearance -->
+                    <!-- why we are using d-flex here - prob because of "Flexbug #12" described at https://getbootstrap.com/docs/4.0/layout/media-object/-->
+                    <!-- d-flex sets "display: flex;" in CSS (I guess this is a substitution for float / abs pos) -->
+                    <!-- https://developer.mozilla.org/en-US/docs/Web/CSS/display -->
+                    <!-- https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout -->
+                    <!-- in order to use an image in a media object, we need to apply some additional flex related classes here, so I apply the d-flex. And then mr-3 (margin right 3). That gives sufficient margin to the right of this image, so that the description is slightly set apart from the image in the web page. (And if we were positioning the img to the right side, we would've used ml-3 - but then we'd also have to place the img code below the media-body div) -->
                     
                     <div class="media-body">
-                        <h2 class="mt-0">Uthappizza <span class="badge badge-danger">HOT</span> <span class="badge badge-pill badge-secondary">$4.99</span></h2> 
+                        <h2 class="mt-0">Uthappizza <span class="badge badge-danger">HOT</span> <span class="badge badge-pill badge-secondary">$4.99</span></h2> <!-- margin top 0 - so This title will be aligned to the top of the media object (though I don't see any changes from adding or removing it!) -->
                         <p class="d-none d-sm-block">A unique combination of Indian Uthappam (pancake) and Italian pizza, topped with Cerignola olives, ripe vine cherry tomatoes, Vidalia onion, Guntur chillies and Buffalo Paneer.</p>
                     </div>
                 </div>
@@ -338,6 +366,8 @@
         <div class="container">
             <div class="row">             
                 <div class="col-4 offset-1 col-sm-2"> 
+                    <!--offset-1 means push it to the right by 1 col. No size indicated in offset - so it'll be applied to all sizes -->
+                    <!--for extra small screens the first two divs will be positioned side by side (taking 11 cols - with one left for offset), and the 3rd div will be STACKED BELOW. For small and above all three cols will be side by side (taking 11 cols - with one left for offset)-->
                     <h5>Links</h5>
                     <ul class="list-unstyled">
                         <li><a href="#">Home</a></li>
@@ -352,25 +382,31 @@
 		              121, Clear Water Bay Road<br>
 		              Clear Water Bay, Kowloon<br>
 		              HONG KONG<br>
-		              <i class="fa fa-phone "></i> +852 1234 5678<br> 
-		              <i class="fa fa-fax "></i> Fax: +852 8765 4321<br> 
+		              <i class="fa fa-phone "></i> +852 1234 5678<br> <!-- he also had fa-lg, but it seems to be too big compared to the text -->
+		              <i class="fa fa-fax "></i> Fax: +852 8765 4321<br> <!--the fax icon is not informative though! So in case of fax perhaps better just write "Fax: "! -->
 		              <i class="fa fa-envelope "></i> <a href="mailto:confusion@food.net">confusion@food.net</a>
 		           </address>
                 </div>
-                <div class="col-12 col-sm-4 align-self-center"> 
-                    <div class="text-center"> 
+                <div class="col-12 col-sm-4 align-self-center"> <!--earlier we used "align-items-center" ON A ROW - to vertically align all items in that row. But here we need to vertically align only the content in one COLUMN (the 3rd col - leaving the first two as they are) - and the class for this is align-self-center -->
+                    <div class="text-center"> <!-- I wonder why did we use a separate div for this? -->
                         <a class="btn btn-social-icon btn-google" href="http://google.com/+"><i class="fa fa-google-plus fa-lg"></i></a> 
-                        
+                        <!-- btn stuff in <a> is Bootstrap's classes - and they make a link look REALLY like a BUTTON. 
+                        And fa classes in <i> (from Font Awesome that we downloaded separately) create CONTENT inside those buttons!
+                        Remove btn classes from <a> / fa classes from <i> to see the difference!
+                        (Ex btn-google just creates red Google background - but the content is done by fa-google-plus!) -->
+                        <!-- btn-social-icon just makeks the shape of the button square -->
                         <a class="btn btn-social-icon btn-facebook" href="http://www.facebook.com/profile.php?id="><i class="fa fa-facebook fa-lg"></i></a>
                         <a class="btn btn-social-icon btn-linkedin" href="http://www.linkedin.com/in/"><i class="fa fa-linkedin fa-lg"></i></a>
                         <a class="btn btn-social-icon btn-twitter" href="http://twitter.com/"><i class="fa fa-twitter fa-lg"></i></a>
-                        <a class="btn btn-social-icon btn-google" href="http://youtube.com/"><i class="fa fa-youtube fa-lg"></i></a> 
+                        <a class="btn btn-social-icon btn-google" href="http://youtube.com/"><i class="fa fa-youtube fa-lg"></i></a> <!-- note that Youtube uses btn-google! So btn-google is for all Google products! -->
+
+                        <!--the last one is just our mail - it doesn't have a fixed social media design - so we'll style it ourselves: -->
                         <a class="btn btn-social-icon" href="mailto:"><i class="fa fa-envelope-o fa-lg"></i></a>
                     </div>
                 </div>
            </div>
            <div class="row justify-content-center">             
-                <div class="col-auto">
+                <div class="col-auto"><!--so that it will occupy just enough cols as is required by its content-->
                     <p>© Copyright 2018 Ristorante Con Fusion</p>
                 </div>
            </div>
