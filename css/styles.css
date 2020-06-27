@@ -62,3 +62,19 @@ body {
     padding: 10px;
     
 }
+
+
+.carousel { /* adding our own styling to the carousel class */
+    background: #512DA8;
+}
+.carousel-item {
+    height: 300px;
+}
+.carousel-item img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-height: 300px;
+
+    /* top and left zero will position this image to the top left edge of the carousel box there and with a minimum height set to 300 pixel to match the carousel-items height. So this image will stretch the entire height of the carousel but will be positioned to the left edge of the carousel box here. */
+}
