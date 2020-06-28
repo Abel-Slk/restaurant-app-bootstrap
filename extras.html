@@ -3,7 +3,7 @@
 
 <h2>Corporate Leadership</h2>
 
-<ul class="nav nav-tabs"> <!-- for an alt styling can substitute nav with nav-pills -->
+<ul class="nav nav-tabs"> <!-- for an alt styling can substitute nav-tabs with nav-pills -->
     <li class="nav-item">
         <a class="nav-link active" href="#peter" role="tab" data-toggle="tab">Peter Pan, CEO</a>
     </li>
@@ -20,7 +20,7 @@
 
 <div class="tab-content">
     <div role="tabpanel" class="tab-pane fade show active" id="peter">
-        <!-- the role is tab-panel, And the corresponding BS class that I need to apply is tab-pane. 
+        <!-- the role is tabpanel, And the corresponding BS class that I need to apply is tab-pane. 
         the fade class allows this content to fade in. this is an animation class that Bootstrap supports. 
         The show class specifies that this particular content should be shown when the page is first rendered (otherwise it gets shown only if you click on the title).  -->
 
@@ -50,20 +50,21 @@
 <!-- ********************** -->
 
 <!-- Button "Reserve Table" with a tooltip (instead of a modal): -->
-<a role="button" class="btn btn-warning btn-block btn-sm nav-link"
-data-toggle="tooltip" data-html="true" 
-title="or Call us at <br><strong>+857 08463008</strong>"
-data-placement="bottom"
-href="#reserveTable">Reserve Table</a> 
+<a role="button" class="btn btn-warning btn-sm btn-block"
+    data-toggle="tooltip" data-placement="bottom" data-html="true" 
+    title="or Call us at <br><strong>+857 08463008</strong>"
+    href="#reserveTable">
+    Reserve Table
+</a> 
 <!-- btn-block Creates block level buttons (those that span the full width of a parent) -->
-<!-- nav-link: I noticed he added nav-link to his code (even though nav-link wasn't mentioned in the assignment, and even though there's no base .nav class anywhere here!) - and it makes the button look better actually - makes it more thick (it was too thin and stretched) -->
-<!-- data-html="true" means that the tooltip content can be styled using HTML -->
+<!-- nav-link: I noticed he added nav-link to <a>'s classes in his code (even though nav-link wasn't mentioned in the assignment, and even though there's no base .nav class anywhere here!) - and it makes the button look better actually - makes it more thick (it was too thin and stretched). BUT it's not really supposed to be there though: ".nav-link is Used to style links/anchors INSIDE THE NAVBAR". So I removed the nav-link from here - to avoid confusion (nav-* classses belong in the navbar!) And if I'll need to style a button differently - I can always do it through custom CSS! -->
+<!-- data-html="true" means that the tooltip content can be styled using HTML (I guess meaning that we can use the title attr for its content) -->
 <!-- data-placement="bottom" to show the tooltip at the bottom -->
 
-<!-- A tooltip the following JS script (can put before the end of the <body>): -->
+<!-- A tooltip like above requires the following JS script (can put it before the end of the <body>): -->
 <script>
     $(document).ready(function() {
-        $('[data-toggle="tooltip"]').tooltip(); // this is specifying that wherever there is an attribute of this kind for that particular HTML tag, turn on the tooltip. 
+        $('[data-toggle="tooltip"]').tooltip(); // select those elements for which there is an attribute with data-toggle="tooltip" and turn on the tooltip for them 
     });
 
     // Alt can create a popover instead of a tooltip (which is similar): see https://getbootstrap.com/docs/4.0/components/popovers/

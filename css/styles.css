@@ -79,3 +79,10 @@ body {
 
     /* top and left zero will position this image to the top left edge of the carousel box there and with a minimum height set to 300 pixel to match the carousel-items height. So this image will stretch the entire height of the carousel but will be positioned to the left edge of the carousel box here. */
 }
+
+#carouselButtons {
+    /* we want to place the buttons at the bottom right corner of the carousel, so: */
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+}
