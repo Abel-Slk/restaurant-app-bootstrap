@@ -86,3 +86,9 @@ body {
     right: 0px;
     bottom: 0px;
 }
+#carouselButton {
+    /* we want to place the button at the bottom right corner of the carousel, so: */
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+}

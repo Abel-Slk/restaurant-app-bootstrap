@@ -4,6 +4,7 @@
 <h2>Corporate Leadership</h2>
 
 <ul class="nav nav-tabs"> <!-- for an alt styling can substitute nav-tabs with nav-pills -->
+<!-- note that this ul's classes here are different from the ul inside the <nav> in index.html -->
     <li class="nav-item">
         <a class="nav-link active" href="#peter" role="tab" data-toggle="tab">Peter Pan, CEO</a>
     </li>
@@ -20,7 +21,7 @@
 
 <div class="tab-content">
     <div role="tabpanel" class="tab-pane fade show active" id="peter">
-        <!-- the role is tabpanel, And the corresponding BS class that I need to apply is tab-pane. 
+        <!-- the role is tabpanel, and the corresponding BS class that I need to apply is tab-pane. 
         the fade class allows this content to fade in. this is an animation class that Bootstrap supports. 
         The show class specifies that this particular content should be shown when the page is first rendered (otherwise it gets shown only if you click on the title).  -->
 
@@ -52,7 +53,8 @@
 <!-- Button "Reserve Table" with a tooltip (instead of a modal): -->
 <a role="button" class="btn btn-warning btn-sm btn-block"
     data-toggle="tooltip" data-placement="bottom" data-html="true" 
-    title="or Call us at <br><strong>+857 08463008</strong>"
+    title="or Call us at <br>
+    <strong>+857 08463008</strong>"
     href="#reserveTable">
     Reserve Table
 </a> 
@@ -66,6 +68,7 @@
     $(document).ready(function() {
         $('[data-toggle="tooltip"]').tooltip(); // select those elements for which there is an attribute with data-toggle="tooltip" and turn on the tooltip for them 
     });
+    // more at https://www.w3schools.com/bootstrap4/bootstrap_ref_js_tooltip.asp
 
     // Alt can create a popover instead of a tooltip (which is similar): see https://getbootstrap.com/docs/4.0/components/popovers/
 </script>
@@ -158,3 +161,31 @@
     </div>
     
 </div>
+
+
+
+<!-- *************** -->
+<div class="btn-group" id="carouselButtons">
+    <button class="btn btn-danger btn-sm" id="carousel-pause">
+        <span class="fa fa-pause"></span>
+    </button>
+
+    <button class="btn btn-danger btn-sm" id="carousel-play">
+        <span class="fa fa-play"></span>
+    </button>
+</div>
+<!-- And the script for it: -->
+<script>
+    $(document).ready(function() {
+        $("#mycarousel").carousel({ interval: 2000}); // making it faster (the default is 5 sec)
+        // carousel() is a Bootstrap JS method. carousel() w/o any args is just a manual way to activate the carousel via JS (but we don't have to use it cause the carousel is activated automatically)
+        // Some Bootstrap stuff can be controlled both using data-* attributes and JS (Jquery) - ex carousel. See complete description of both ways at https://www.w3schools.com/bootstrap4/bootstrap_ref_js_carousel.asp
+        
+        $("#carousel-pause").click(function() {
+            $("#mycarousel").carousel("pause");
+        });
+        $("#carousel-play").click(function() {
+            $("#mycarousel").carousel("cycle"); // note that it's cycle, not play
+        });
+    });
+</script>

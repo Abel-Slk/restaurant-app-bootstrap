@@ -298,15 +298,10 @@
                         <span class="carousel-control-next-icon"></span>
                     </a>
 
-                    <div class="btn-group" id="carouselButtons">
-                        <button class="btn btn-danger btn-sm" id="carousel-pause">
-                            <span class="fa fa-pause"></span>
-                        </button>
 
-                        <button class="btn btn-danger btn-sm" id="carousel-play">
-                            <span class="fa fa-play"></span>
-                        </button>
-                    </div>
+                    <button class="btn btn-danger btn-sm" id="carouselButton">
+                        <span class="fa fa-pause"></span> <!-- initially we want the button to have the fa-pause class -->
+                    </button>
 
                 </div>
             </div>
@@ -436,11 +431,19 @@
                 $("#mycarousel").carousel({ interval: 2000}); // making it faster (the default is 5 sec)
                 // carousel() is a Bootstrap JS method
                 
-                $("#carousel-pause").click(function() {
-                    $("#mycarousel").carousel("pause");
-                });
-                $("#carousel-play").click(function() {
-                    $("#mycarousel").carousel("cycle"); // note that it's cycle, not play
+                $("#carouselButton").click(function() {
+                    if ($("#carouselButton").children("span").hasClass("fa-pause")) { //check if the #carouselButton el has any <span> el inside, and if the span tag has the fa-pause class, then we know that this button is currently acting as the pause button
+                        $("#mycarousel").carousel("pause");
+                        $("#carouselButton").children("span").removeClass("fa-pause");
+                        $("#carouselButton").children("span").addClass("fa-play");
+                    }
+                    else if ($("#carouselButton").children("span").hasClass("fa-play")) { //if is not necessary here, cause there are only two options ("it's here just for my reassurance")
+                        $("#mycarousel").carousel("cycle");
+                        $("#carouselButton").children("span").removeClass("fa-play");
+                        $("#carouselButton").children("span").addClass("fa-pause");
+
+                    }
+                    
                 });
             });
         </script>
