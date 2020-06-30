@@ -1,16 +1,15 @@
 
-//Sass uses $ for vars (while Less uses @):
-$lt-gray: #ddd; // light gray
+
+$lt-gray: #ddd; 
 $background-dark: #512DA8;
 $background-light: #9575CD;
 $background-pale: #D1C4E9;
 
-// Height variables
 $carousel-item-height: 300px;
 
 
 // mixins:
-@mixin zero-margin($pad-up-dn, $pad-left-right) { // note that in Sass we can't have default params (like in Less)
+@mixin zero-margin($pad-up-dn, $pad-left-right) { 
 	margin: 0px auto;
 	padding: $pad-up-dn $pad-left-right;
 }
@@ -18,7 +17,7 @@ $carousel-item-height: 300px;
 
 
 .row-header{
-    @include zero-margin(0px, 0px); // in Sass we can't have default params (like in Less), and thus stuff like zero-margin() is not possible
+    @include zero-margin(0px, 0px); 
 }
 
 .row-content {
