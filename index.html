@@ -33,7 +33,7 @@
             </button>
             <!-- note: we're not specifying for which screen sizes this navbar-toggler button should appear - but it automatically appears only for xs sizes (width < 576px)! I guess this is Bootstrap's "mobile first" stuff - they've just built in the xs size setting into some class already (prob navbar-toggler) -->
 
-            <a class="navbar-brand mr-auto" href="#"><img src="img/logo.png" height="30" width="41"></a> <!-- so he rescales here the img himself... but then, it was just 167x123 originally - so even if it's inefficient in general, here it wouldn't matter much I guess-->
+            <a class="navbar-brand mr-auto" href="#"><img src="img/logo.png" height="30" width="41" alt="logo small"></a> <!-- so he rescales here the img himself... but then, it was just 167x123 originally - so even if it's inefficient in general, here it wouldn't matter much I guess-->
             <!-- brand is ex for your company name or logo; we'll just use it to get to the top of the home page -->
             <!-- mr-auto is here for the same reason as in ul - and it'll become active if the ul gets collapsed -->
             <!-- we're not including this <a> inside the ul cause we want the brand to never collapse, ie even on xs screens (unlike the ul) -->
@@ -61,9 +61,23 @@
                 <span class="navbar-text"> <!-- to include a link into the navbar and show it as text (using span just to use a class!) -->
                 <!-- .navbar-text: Vertically align any elements inside the navbar that are not links (ensures proper padding) -->
                 <!-- note that this login span will be pushed all the way to the right - because of ul's mr-auto! -->
-                    <a data-toggle="modal" data-target="#loginModal">
+
+                <!-- Triggering a modal can be done either using data-* attributes or via JS (full info at https://www.w3schools.com/bootstrap4/bootstrap_ref_js_modal.asp) -->
+                    <!-- using JS (+ <script> at the bottom): -->
+                    <a role="button" id="loginModalButton">
                         <span class="fa fa-sign-in"></span> Login
                     </a>
+                    <!-- Can also use <button> instead of <a> (which actually makes more sense - but for it to look visually the same gotta find a way to make its color transparent - or same as the navbar): 
+                    <button type="button" class="btn btn-link" id="loginModalButton">
+                        <span class="fa fa-sign-in"></span> Login
+                    </button> -->
+
+                    <!-- same using data-* attributes: -->
+                    <!-- <a data-toggle="modal" data-target="#loginModal">
+                        <span class="fa fa-sign-in"></span> Login
+                    </a> -->
+
+                    
                 </span>
 
             </div>
@@ -73,7 +87,7 @@
 
     <!-- bootstrap advises that all modal related code be placed at the top of your page. So, I'm going to place in the code for the modal below the navbar here -->
     <div id="loginModal" class="modal fade" role="dialog">
-        <div class="modal-dialog modal-lg" role="content">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
 
                 <div class="modal-header">
@@ -117,11 +131,11 @@
     </div>
 
     <div id="reservationModal" class="modal fade" role="dialog">
-        <div class="modal-dialog modal-lg" role="content">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
 
                 <div class="modal-header">
-                    <h4 class="modal-title">Reseve a Table</h4>
+                    <h4 class="modal-title">Reserve a Table</h4>
                     <button type="button" class="close" data-dismiss="modal"> 
                         &times;
                     </button> 
@@ -131,7 +145,8 @@
                     <form>
                         <div class="form-group row">
                             
-                            <label for="numberOfGuests" class="col-12 col-md-2 col-form-label">Number of Guests</label>
+                            <label class="col-12 col-md-2 col-form-label">Number of Guests</label>
+                            <!-- Note: no for here! Initially had for="numberOfGuests" (which referenced the div below that looked like <div class="col-12 col-md" id="numberOfGuests"> - but HTML validator marked this as an error - saying a label should reference a CONTROL element! Like <input>! And <div> isn't a control element!) -->
                             <!-- BS: Be sure to add .col-form-label to your <label>s as well so they’re vertically centered with their associated form controls -->
                             <!-- no need for a div around label to indicate columns, because we can list column classes right in the label - it's supposed to be done like this, label even has its own col class, col-form-label - and we can list other col classes next to it (that's how they do it in BS docs and that's how Muppala did it as well) -->
                             <!-- NOTE: initially I didn't remove the div entirely, but just removed its classes - and this led to layout errors! Which means even an empty div can mess up the layout! So either use it with classes or don't use at all! -->
@@ -194,9 +209,10 @@
                         </div>
         
                         <div class="form-group row">
-                            <div class="col-12 col-md-2" id="dateAndTime">
-                                <label for="dateAndTime">Date and Time</label>
-                            </div> <!-- interesting - tried adding the col-form-label class to label - and the label shifted down a bit - ended up being lower than the input it's tied to! Tried also removing the wrapping div and moving its classes into the label - nothing changes... So leave it like this for now! But in the Contact Us form labels were aligned correctly! Mb incorrect alignment here has something to do with this form being put inside a card?.. Or mb it's just cause the label texts are long and take two lines? -->
+                            <div class="col-12 col-md-2">
+                                <label>Date and Time</label> <!-- see "no for here"^ -->
+                            </div> 
+                            <!-- interesting - tried adding the col-form-label class to label - and the label shifted down a bit - ended up being lower than the input it's tied to! Tried also removing the wrapping div and moving its classes into the label - nothing changes... So leave it like this for now! But in the Contact Us form labels were aligned correctly! Mb incorrect alignment here has something to do with this form being put inside a card?.. Or mb it's just cause the label texts are long and take two lines? -->
 
                             <div class="col-12 col-md">
                                 <input type="date" class="form-control" id="date" name="date"> 
@@ -231,14 +247,24 @@
                 </div>
 
                 <div class="col-12 col-sm align-self-center">
-                    <img src="img/logo.png" class="img-fluid">
+                    <img src="img/logo.png" class="img-fluid" alt="logo">
                 </div>
 
                 <div class="col-12 col-sm align-self-center">
+                    <!-- Using JS: -->
                     <a role="button" class="btn btn-warning btn-block btn-sm" 
-                        data-toggle="modal" data-target="#reservationModal">
+                        id="reservationModalButton">
                         Reserve Table
-                    </a> <!-- can use either data-target="#reservationModal" or href="#reservationModal" to trigger the opening of the modal -->
+                    </a> 
+                    
+
+                    <!-- Same Using data-* attributes: -->
+                    <!-- 
+                    <a role="button" class="btn btn-warning btn-block btn-sm" 
+                    data-toggle="modal" data-target="#reservationModal">
+                    Reserve Table
+                    </a>  -->
+                    <!-- can use either data-target="#reservationModal" or href="#reservationModal" to trigger the opening of the modal -->
                 </div>
             </div>
         </div>
@@ -445,6 +471,15 @@
                     }
                     
                 });
+
+
+                $("#loginModalButton").click(function() {
+                    $("#loginModal").modal();
+                });
+                $("#reservationModalButton").click(function() {
+                    $("#reservationModal").modal();
+                });
+
             });
         </script>
         
