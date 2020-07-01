@@ -197,6 +197,7 @@
                                     <label class="btn btn-success active">
                                         <input type="radio" name="section" id="non-smoking" value="non-smoking" checked> Non-smoking
                                     </label>
+                                    <!-- Note: read info upon hovering over a <label> - it says even there that you can put a form control inside a label! -->
                                     <!-- Have to put the radio <input> inside the label if we want to see only the label button, without the radio visible (it will be hidden inside the button!) -->
                                     <!-- checked is related to the radio input and makes it checked (even though it won't be visible here - but but it's still so, and if we press submit without selecting anything, the server will receive the checked radio option!) -->
                                     <!-- BS docs: Note that pre-checked buttons require you to manually add the .active class to the input’s <label>. (Because radio input and label are diff things - and even though we've taken care of radio using checked, we still need to do similar stuff with the label button - and we do that using active) -->
@@ -450,38 +451,7 @@
         <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
         <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 
-        <script>
-            // Some Bootstrap stuff can be controlled both using data-* attributes and JS (Jquery) - ex carousel. See complete description of both ways at https://www.w3schools.com/bootstrap4/bootstrap_ref_js_carousel.asp
-
-            $(document).ready(function() {
-                $("#mycarousel").carousel({ interval: 2000}); // making it faster (the default is 5 sec)
-                // carousel() is a Bootstrap JS method
-                
-                $("#carouselButton").click(function() {
-                    if ($("#carouselButton").children("span").hasClass("fa-pause")) { //check if the #carouselButton el has any <span> el inside, and if the span tag has the fa-pause class, then we know that this button is currently acting as the pause button
-                        $("#mycarousel").carousel("pause");
-                        $("#carouselButton").children("span").removeClass("fa-pause");
-                        $("#carouselButton").children("span").addClass("fa-play");
-                    }
-                    else if ($("#carouselButton").children("span").hasClass("fa-play")) { //if is not necessary here, cause there are only two options ("it's here just for my reassurance")
-                        $("#mycarousel").carousel("cycle");
-                        $("#carouselButton").children("span").removeClass("fa-play");
-                        $("#carouselButton").children("span").addClass("fa-pause");
-
-                    }
-                    
-                });
-
-
-                $("#loginModalButton").click(function() {
-                    $("#loginModal").modal();
-                });
-                $("#reservationModalButton").click(function() {
-                    $("#reservationModal").modal();
-                });
-
-            });
-        </script>
+        <script src="js/scripts.js"></script>
         
 </body>
 

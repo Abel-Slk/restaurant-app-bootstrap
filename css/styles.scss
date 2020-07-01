@@ -14,7 +14,7 @@ $carousel-item-height: 300px;
 	margin: 0px auto;
 	padding: $pad-up-dn $pad-left-right;
 }
-
+    
 
 
 .row-header{
@@ -38,13 +38,13 @@ $carousel-item-height: 300px;
     color: floralwhite;
 }
 
-address{
-    font-size:80%;
-    margin:0px;
-    color:#0f0f0f;
+address { // <address> is actually an HTML element, not a class - that's why no . here
+    font-size: 80%;
+    margin: 0px;
+    color: #0f0f0f;
 }
 
-body{
+body {
     padding: 50px 0px 0px 0px;
     z-index: 0;
 }
@@ -62,7 +62,7 @@ body{
 
 
 .carousel {
-    background:$background-dark;
+    background: $background-dark;
 
     .carousel-item {
         height: $carousel-item-height;
@@ -80,7 +80,7 @@ body{
     right:0px;
     position: absolute;
     bottom: 0px;
-    z-index: 1;
+    z-index: 1; //this is prob to make sure the pause/play button is on top of the right arrow? Which spans the whole height? (saw the cursor change to hand on the whole height)
 }
 
 .modal {
