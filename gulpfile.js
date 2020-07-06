@@ -16,7 +16,7 @@ var gulp = require('gulp'),
 //As I mentioned in the previous exercise, it will become more clearer to you why the code is written like this, once you understand more about node modules in a later course. 
 
 // Gulp is a code-based way of configuring tasks (unlike Grunt which relies more on configuration of the tasks):
-gulp.task('sass', function() {  // the sass task
+gulp.task('sass', function() {  // the sass task. It compiles .scss files to .css - but not automatically - only after we type "gulp sass" at the prompt. To make the conversion automamatic after any change in .scss files we'll use this sass task in the sass:watch task below 
     return gulp.src('./css/*.scss')     // create a stream of files
         .pipe(sass().on('error', sass.logError))    // pipe them through sass() (and on error use sass.logError)
         // note: logError without ()! Even though it's highlighed as a function automatically and looks like it should have a CALL here with ()! But when I added () it resulted in an error!
@@ -29,7 +29,7 @@ gulp.task('sass', function() {  // the sass task
 gulp.task('sass:watch', function() {
     gulp.watch('./css/*.scss', ['sass']);    // watch() is already built in into Gulp
     // on any changes in those files the sass task will be run
-    // ./ means current working directory
+    // ./ means current working directory (I guess the current dir is the same dir in which this gulpfile.js is located)
 });
 
 gulp.task('browser-sync', function() {

@@ -39,13 +39,13 @@ module.exports = function(grunt) {
                 options: {
                     watchTask: true,
                     server: {
-                        baseDir: './' // I specify the current directory as my base directory
+                        baseDir: './' // I specify the current directory as my base directory (and I guess the current dir is the same dir in which this Gruntfile.js is located)
                     }
                 }
             }
         },
         copy: { // the copy task
-            html: { // copying html files is needed for usemin. usemin expects us to also copy our HTML files to the distribution folder so that it can do the manipulation on that. (strage though why that is necessary - couldn't usemin process the html files in their usual location and THEN move the processed files to the dist folder?.. And when we were using npm scripts, we didn't have to set up a copy task for html files for usemin... This looks like a Grunt-specific idiosyncracy of usemin...)
+            html: { // copying html files is needed for usemin. usemin expects us to also copy our HTML files to the distribution folder so that it can do the manipulation on that. (strage though why that is necessary - couldn't usemin process the html files in their usual location and THEN move the processed files to the dist folder?.. And when we were using npm scripts, we didn't have to set up a copy task for html files for usemin... This looks like a Grunt-specific idiosyncracy of Grunt's version of usemin...)
                 files: [{ // Here we will use some of the grunt syntax for specifying the files that need to be copied. these are some configuration parameters that you need to set up for the copy task. if you need to understand, you'll be able to figure this out then by reading the documentation for the corresponding grunt plugin. or you can just simply follow the example that I am giving here:
                     expand: true,
                     dot: true,
@@ -55,7 +55,7 @@ module.exports = function(grunt) {
                 }]
             },
             fonts: { // and this is just like copyfonts in npm scripts 
-            // and I guess we had to make a separate copyfonts script in package.json when we were using npm scripts because while everything else that we need (all our html, css and js) WILL be copied into the dist folder by the usemin script - fonts WON'T! no one will copy the fonts! So we gotta do it ourselves!
+            // and I guess we had to make a separate copyfonts script in package.json when we were using npm scripts because while everything else that we need (all our html, css and js) WILL be copied into the dist folder by the usemin script, fonts WON'T! no one will copy the fonts! So we gotta do it ourselves!
                 files: [{
                     expand: true,
                     dot: true,
@@ -74,10 +74,10 @@ module.exports = function(grunt) {
             dynamic: {
                 files: [{
                     expand: true,   // Enable dynamic expansion
-                    dot: true,  // this was in the vid but was absent in the text ver 
+                    dot: true,  // this was in the vid but was absent in the text ver... 
                     cwd: './',  // Src matches are relative to this path
                     src: ['img/*.{png,jpg,gif}'],   // Actual patterns to match
-                    dest: 'dist'    // Destination path prefix
+                    dest: 'dist'    // Destination path prefix (so we get dist/img/...!)
                 }]
             }
         },
@@ -143,7 +143,7 @@ module.exports = function(grunt) {
                 assetsDirs: ['dist', 'dist/css', 'dist/js'] // this is where all the assets that I'm using exist (the CSS and the JavaScript files)
             }
         },
-        htmlmin: { // The reason why we perform "htmlmin" AFTER we finish "usemin" (while we'll do concat, cssmin, uglify, filerev BEFORE usemin!) is because "usemin" will replace all the scripts with the main.js file and also all that CSS code concatenated and combined and replaced with the main.css file. So the htmlmin will be performed on the RESULTING HTML files after "usemin" has completed its work. This is how this works in Grunt. So the Grunt "htmlmin" has to be applied after the "usemin" has completed its work.
+        htmlmin: { // we'll perform "htmlmin" AFTER we finish "usemin" (while we'll do concat, cssmin, uglify, filerev BEFORE usemin!) because "usemin" will replace all the scripts with the main.js file and also all that CSS code concatenated and combined and replaced with the main.css file. So the htmlmin will be performed on the RESULTING HTML files after "usemin" has completed its work. This is how this works in Grunt. So the Grunt "htmlmin" has to be applied after the "usemin" has completed its work.
             dist: { // the target (htmlmin will be performed on all the HTML files that are in that folder)
                 options: {  // Target options
                     collapseWhitespace: true, // meaning that all the white space in the HTML files would all be collapsed
