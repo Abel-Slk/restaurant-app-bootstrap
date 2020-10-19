@@ -4,7 +4,7 @@
 var gulp = require('gulp'),
     sass = require('gulp-sass'),
     browserSync = require('browser-sync'),
-    del = require('del'),
+    del = require('del'), // in Gulp we'll clean up the distribution folder using the del Node module 
     imagemin = require('gulp-imagemin'),
     uglify = require('gulp-uglify'),
     usemin = require('gulp-usemin'),
@@ -59,7 +59,7 @@ gulp.task('clean', function() {
     return del(['dist']); // the dist folder will be deleted
 });
 
-gulp.task('copyfonts', function() {
+gulp.task('copyfonts', function() { // we don't need a specific Node module for arranging the copying of the files. We can simply use the Gulp source and destination streams to be able to pipe the files from the source location to the destination location:
    gulp.src('./node_modules/font-awesome/fonts/**/*.{ttf,woff,eof,svg}*') 
    // using globbing patterns here
    // the * at the end of .{ttf,woff,eof,svg}* is to match variations of those extensions - ex woff2!
@@ -74,9 +74,9 @@ gulp.task('copyfonts', function() {
     // Match a/z and a/b/z and a/b/c/z:
     // a/**/z
    // more at https://commandbox.ortusbooks.com/usage/parameters/globbing-patterns
-   .pipe(gulp.dest('./dist/fonts'));
+   .pipe(gulp.dest('./dist/fonts')); 
 });
-// notice that we don't need a specific module for arranging the copying of the files. We simply use the Gulp source and destination streams to be able to pipe the files from the source location to the destination location.
+
 
 gulp.task('imagemin', function() {
     return gulp.src('img/*.{png,jpg,gif}')
@@ -85,7 +85,8 @@ gulp.task('imagemin', function() {
 });
 
 gulp.task('usemin', function() { // the usemin task takes the html files and then looks up the CSS and JavaScript blocks in the html files, combines, concatenates, and minifies and uglifies the files, and then replaces them by the concatenated file in the distribution folder.
-// NOTE: I noticed that Gulp's and Grunt's versions of usemin don't remove comments! While npm scripts' usemin does! 
+// In Gulp (like with npm scripts and unlike Grunt) the usemin includes inside itself all the tasks like htmlmin, cleanCss, uglify, rev, so we won't have separate tasks for those 
+// NOTE: I noticed that Gulp's and Grunt's versions of usemin don't remove comments! While npm scripts' usemin does! For the removal of comments using Gulp can prob use this: https://stackoverflow.com/questions/29063427/gulp-remove-comments-from-javascript-files
     return gulp.src('./*.html')
     .pipe(flatMap(function(stream, file) { // pipe through the flatMap module. Flatmap takes multiple html files (ex we have 3) and starts up parallel pipelines for each one of these html files. Each one of them going through the same set of steps. and then finally converging and copying it into the destination folder.
     // the file arg takes each one of those source files and then treats them to the same set of functions here, and then starts up its separate stream for each one of them.
@@ -101,7 +102,7 @@ gulp.task('usemin', function() { // the usemin task takes the html files and the
     .pipe(gulp.dest('dist/')); 
 });
 
-gulp.task('build', ['clean'], function() { // you need to first execute the clean task before the remaining tasks are executed because we want to first clean up the distribution folder. And that has to be completed before the remaining tasks are done. With Gulp, the tasks are executed in parallel automatically. And so it may so happen that if you execute the clean task in parallel with the remaining task, the clean task might end up finishing later and then deleting some of the work that has been done by the remaining tasks. So, that's why when you specify the Gulp task, if you specify clean as the first one in, as the second parameter here, then that means that that task will be completed first. And then the remaining tasks will be executed. 
+gulp.task('build', ['clean'], function() { // you need to first execute the clean task before the remaining tasks are executed because we want to first clean up the distribution folder. And that has to be completed before the remaining tasks are done. WITH GULP, the tasks are executed in parallel automatically. And so it may so happen that if you execute the clean task in parallel with the remaining task, the clean task might end up finishing later and then deleting some of the work that has been done by the remaining tasks. So, that's why when you specify the Gulp task, if you specify clean as the first one in, as the second parameter here, then that means that that task will be completed first. And then the remaining tasks will be executed. 
     gulp.start('copyfonts', 'imagemin', 'usemin'); // And With gulp.start(), all the tasks that we specify here are going to be executed in parallel
 });
 
