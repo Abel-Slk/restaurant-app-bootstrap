@@ -1,16 +1,14 @@
 
-//Sass uses $ for vars (while Less uses @):
-$lt-gray: #ddd; // light gray
+$lt-gray: #ddd; 
 $background-dark: #512DA8;
 $background-light: #9575CD;
 $background-pale: #D1C4E9;
 
-// Height variables
 $carousel-item-height: 300px;
 
 
 // mixins:
-@mixin zero-margin($pad-up-dn, $pad-left-right) { // note that in Sass we can't have default params (like in Less)
+@mixin zero-margin($pad-up-dn, $pad-left-right) { 
 	margin: 0px auto;
 	padding: $pad-up-dn $pad-left-right;
 }
@@ -18,7 +16,7 @@ $carousel-item-height: 300px;
 
 
 .row-header{
-    @include zero-margin(0px, 0px); // in Sass we can't have default params (like in Less), and thus stuff like zero-margin() is not possible
+    @include zero-margin(0px, 0px); 
 }
 
 .row-content {
@@ -38,7 +36,7 @@ $carousel-item-height: 300px;
     color: floralwhite;
 }
 
-address { // <address> is actually an HTML element, not a class - that's why no . here
+address { 
     font-size: 80%;
     margin: 0px;
     color: #0f0f0f;
@@ -71,16 +69,40 @@ body {
             top: 0;
             left: 0;
 
-            min-height: 300px;
+            // min-height: 300px;
+            height: $carousel-item-height;
         }
+    }
+
+    .carousel-caption {
+        right: 5%;
+        text-align: center;
+        // background-color: black;
+        max-width: 700px;
+        left: auto;
+        top: 60px;
+        padding:5px;
     }
 }
   
 #carouselButton {
-    right:0px;
+    right: 0px;
     position: absolute;
     bottom: 0px;
-    z-index: 1; //this is prob to make sure the pause/play button is on top of the right arrow? Which spans the whole height? (saw the cursor change to hand on the whole height)
+    z-index: 1; 
+}
+
+.media {
+    img {
+        height: 350px;
+
+    }
+}
+
+.secHeaders {
+    font-weight: bold;
+    font-size: 250%;
+    line-height: 120%;
 }
 
 .modal {

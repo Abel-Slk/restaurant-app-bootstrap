@@ -2,14 +2,13 @@
 <html lang="en">
 
 <head>
-
     <title>Ristorante Con Fusion: About Us</title>
-    <!-- Required meta tags always come first -->
+    
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <!-- Bootstrap CSS, Icon Fonts and Social Buttons (gotta place after the Bootstrap CSS), and then Custom CSS -->
+    <!-- Bootstrap CSS, Icon Fonts and Social Buttons, then Custom CSS -->
     <!-- build:css css/main.css -->
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
 
@@ -64,11 +63,11 @@
             </div>
         </div>
 
-        <div class="row row-content">
+        <div class="row row-content text-center mt-0">
            <div class="col-12">
               <h3>Location Information</h3>
            </div>
-            <div class="col-12 col-sm-4 offset-sm-1">
+            <div class="col-12">
                    <h5>Our Address</h5>
                     <address style="font-size: 100%">
 		              121, Clear Water Bay Road<br>
@@ -80,44 +79,32 @@
                         <a href="mailto:confusion@food.net">confusion@food.net</a>
 		           </address>
             </div>
-            <div class="col-12 col-sm-6 offset-sm-1">
+            <!-- <div class="col-12 col-sm-6 offset-sm-1">
                 <h5>Map of our Location</h5>
-            </div>
-            <div class="col-12 col-sm-11 offset-sm-1">
-                <div class="btn-group" role="group"> <!-- we define the button bar using the btn-group class, and then add the three buttons using the <a> tag -->
-                    <!-- also see https://getbootstrap.com/docs/4.0/components/button-group/ -->
+            </div> -->
+            <div class="col-12">
+                <div class="btn-group" role="group"> 
                     <a role="button" class="btn btn-primary" href="tel:+85212345678"><i class="fa fa-phone"></i> Call</a> 
-                    <!--The .btn classes are designed to be used with the <button> element. However, you can also use these classes on <a> or <input> elements (though some browsers may apply a slightly different rendering).
-                    When using button classes on <a> elements that are used to trigger in-page functionality (like collapsing content), rather than linking to new pages or sections within the current page, these links should be given a role="button" to appropriately convey their purpose to assistive technologies such as screen readers. Ex Screen Readers will read this element as “button” instead of “link”.
-                    -And we do need an <a> here to be able to use href - though we don't want to go to a new page or another place in the page - we just want to trigger the action of calling, but remain in the same place! And that's why we're ending up creating a link that at the same time will have role="button" and btn classes! -->
                     
-                    <!--btn-primary/btn-secondary/btn-info for diff colors-->
-                    <!-- href="tel:...": if your device is capable of making a phone call, then touching this button will cause a call to be done (Similar functionality with href="mailto:...") -->
+                    <a role="button" class="btn btn-info"><i class="fa fa-skype"></i> Skype</a> 
 
-                    <a role="button" class="btn btn-info"><i class="fa fa-skype"></i> Skype</a> <!-- Skype can't be configured using href, so no href here-->
-
-                    <a role="button" class="btn btn-success" href="mailto:confusion@food.net"><i class="fa fa-envelope-o"></i> Email</a> <!--success for green color-->
+                    <a role="button" class="btn btn-success" href="mailto:confusion@food.net"><i class="fa fa-envelope-o"></i> Email</a> 
                 </div>
             </div>
         </div>
 
         <div class="row row-content">
-           <div class="col-12">
+           <div class="col-12 mb-4">
               <h3>Send us your Feedback</h3>
            </div>
 
             <div class="col-12 col-md-9">
                 <form>
                     <div class="form-group row"> 
-                    <!--Note that we're using Bootstrap Grid nesting here - this is a row - which is inside a col which is inside another row!-->
                         <label for="firstname" class="col-md-2 col-form-label">First Name</label> 
-                        <!-- see comment in index.html: no need for a div around label to indicate columns^ -->
-                        <!--col-md-2 here means 2 cols inside the containing row (which is nested inside anothe col and row) - so this 2 will be 2/12 of the NESTED row! -->
-                        <!-- not explicitly specifying col-12 here - did he forget it? -->
-                        <div class="col-md-10"> <!-- 10/12 of the NESTED row! -->
-                            <!--why do we need this div though? above we applied col straight to label, so why can't we here straight to input?-->
-                            <input type="text" class="form-control" id="firstname" name="firstname" placeholder="First Name"> <!-- form-control: https://getbootstrap.com/docs/4.0/components/forms/#form-controls -->
-                            <!-- name attr stores the name that is expected by the server script -->
+                        
+                        <div class="col-md-10"> 
+                            <input type="text" class="form-control" id="firstname" name="firstname" placeholder="First Name"> 
                         </div>
                     </div> 
                     <div class="form-group row">
@@ -133,7 +120,7 @@
                         <div class="col-5 col-md-3"> 
                             <input type="tel" class="form-control" id="areacode" name="areacode" placeholder="Area Code"> 
                         </div>
-                        <div class="col-7 col-md-7"> <!-- on xs it's 5+7 cols; on md and above, LABEL will also be in the same row, so it's 2+3+7=12 cols -->
+                        <div class="col-7 col-md-7"> 
                             <input type="tel" class="form-control" id="telnum" name="telnum" placeholder="Tel. Number"> 
                         </div>
 
@@ -147,7 +134,7 @@
                     </div> 
 
                     <div class="form-group row">
-                        <div class="offset-md-2 col-md-6"> <!--offset to the right by 2 cols (cause we want the checkbox to be right below the SECOND col above (because checkbox's label is diff - it usually comes AFTER the checkbox) -->
+                        <div class="offset-md-2 col-md-6"> 
                             <div class="form-check">
                                 <input type="checkbox" class="form-check-input" name="approve" id="approve" value="">
                                 <label class="form-check-label" for="approve">
@@ -156,7 +143,7 @@
                             </div>
                         </div>
 
-                        <div class="offset-md-1 col-md-3"> <!--2+6 + 1+3 = 12-->
+                        <div class="offset-md-1 col-md-3"> 
                             <select class="form-control">
                                 <option>Tel.</option>
                                 <option>Email</option>
@@ -192,47 +179,57 @@
     <footer class="footer">
         <div class="container">
             <div class="row">             
-                <div class="col-4 offset-1 col-sm-2">
+                <div class="col-4 col-sm-4 text-center"> 
                     <h5>Links</h5>
                     <ul class="list-unstyled">
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#">Home</a></li>
                         <li><a href="aboutus.html">About</a></li>
                         <li><a href="#">Menu</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="contactus.html">Contact</a></li>
                     </ul>
                 </div>
-                <div class="col-7 col-sm-5">
+                <div class="col-7 col-sm-4 text-center"> 
                     <h5>Our Address</h5>
                     <address>
 		              121, Clear Water Bay Road<br>
 		              Clear Water Bay, Kowloon<br>
 		              HONG KONG<br>
-                      <i class="fa fa-phone fa-lg"></i>: +852 1234 5678<br>
-                      <i class="fa fa-fax fa-lg"></i>: +852 8765 4321<br>
-                      <i class="fa fa-envelope fa-lg"></i>: 
-                      <a href="mailto:confusion@food.net">confusion@food.net</a>
+		              <i class="fa fa-phone "></i> +852 1234 5678<br> 
+		              <i class="fa fa-envelope "></i> <a href="mailto:confusion@food.net">confusion@food.net</a>
 		           </address>
                 </div>
-                <div class="col-12 col-sm-4 align-self-center">
-                    <div class="text-center">
-                        <a class="btn btn-social-icon btn-google" href="http://google.com/+"><i class="fa fa-google-plus"></i></a>
-                        <a class="btn btn-social-icon btn-facebook" href="http://www.facebook.com/profile.php?id="><i class="fa fa-facebook"></i></a>
-                        <a class="btn btn-social-icon btn-linkedin" href="http://www.linkedin.com/in/"><i class="fa fa-linkedin"></i></a>
-                        <a class="btn btn-social-icon btn-twitter" href="http://twitter.com/"><i class="fa fa-twitter"></i></a>
-                        <a class="btn btn-social-icon btn-google" href="http://youtube.com/"><i class="fa fa-youtube"></i></a>
-                        <a class="btn btn-social-icon" href="mailto:"><i class="fa fa-envelope-o"></i></a>
+                <div class="col-12 col-sm-4 align-self-center"> 
+                    <div class="text-center"> 
+                        <a class="btn btn-social-icon btn-facebook" href="http://www.facebook.com/profile.php?id=">
+                            <i class="fa fa-facebook-f"></i>
+                        </a>
+                        <a class="btn btn-social-icon btn-twitter" href="http://twitter.com/">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                        <a class="btn btn-social-icon btn-instagram" href="http://instagram.com/">
+                            <i class="fa fa-instagram"></i>
+                        </a>
+                        <a class="btn btn-social-icon btn-google" href="http://youtube.com/">
+                            <i class="fa fa-youtube"></i>
+                        </a>
+                        <a class="btn btn-social-icon btn-vk" href="http://vk.com/">
+                            <i class="fa fa-vk"></i>
+                        </a>
+                        <a class="btn btn-social-icon btn-linkedin" href="http://www.linkedin.com/in/">
+                            <i class="fa fa-linkedin"></i>
+                        </a>
                     </div>
                 </div>
            </div>
-           <div class="row justify-content-center">             
+           <div class="row justify-content-center mt-3">             
                 <div class="col-auto">
-                    <p>© Copyright 2018 Ristorante Con Fusion</p>
+                    <p>© Copyright 2020 Ristorante Con Fusion</p>
                 </div>
            </div>
         </div>
     </footer>
     
-    <!-- jQuery first, then Popper.js, then Bootstrap JS. Order matters! -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <!-- build:js js/main.js -->
     <script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
     <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
