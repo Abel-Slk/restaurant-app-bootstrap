@@ -8,6 +8,7 @@ Hosted at: http://confusion-bs.gearhostpreview.com/
 - CSS3
 - Bootstrap 4
 - Sass
+- jQuery
 - Browsersync and lite-server for synchronised browser testing and serving the app locally
 - npm scripts for building for production (used the following npm modules: rimraf, copyfiles, imagemin-cli, usemin-cli, cssmin, uglifyjs, htmlmin). Note: the project also includes Gruntfile.js and gulpfile.js as alternative ways of building the distribution folder in
 
